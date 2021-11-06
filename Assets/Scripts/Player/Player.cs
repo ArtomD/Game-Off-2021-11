@@ -188,7 +188,6 @@ public class Player : MonoBehaviour
 
         }
 
-         Debug.Log(targetVelocity);
         //targetVelocity = Vector2.ClampMagnitude(targetVelocity, runSpeed);
         _velocity.x = Mathf.Lerp(_velocity.x, targetVelocity.x, Time.deltaTime * smoothedMovementFactor);
         _velocity.y = Mathf.Lerp(_velocity.y, targetVelocity.y, Time.deltaTime * smoothedMovementFactor);
