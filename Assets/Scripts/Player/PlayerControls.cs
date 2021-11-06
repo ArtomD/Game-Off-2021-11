@@ -34,9 +34,11 @@ public class PlayerControls : MonoBehaviour
 
     private float horizontalMovement;
     private float horizontalMovementAir;
-
+    
     private float dashVelocityCardinal;
     private float dashVelocityDiagonal;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -319,6 +321,8 @@ public class PlayerControls : MonoBehaviour
             freeMove = true;
             rb.velocity = new Vector2(0, 0);
         }
+
+  
 
     }
 

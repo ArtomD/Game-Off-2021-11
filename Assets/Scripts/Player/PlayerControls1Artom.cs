@@ -39,6 +39,9 @@ public class PlayerControls1Artom : MonoBehaviour
 
     private float dashVelocityCardinal;
     private float dashVelocityDiagonal;
+
+    public Vector2 velocity;
+    public float velocityTimer;
     // Start is called before the first frame update
     void Start()
     {
@@ -335,6 +338,12 @@ public class PlayerControls1Artom : MonoBehaviour
                 dashDuration /= 1.2f;
             }
             dashCanTrigger = false;
+        }
+
+        if ((rb.velocity.y != 0 && rb.velocity.x != 0) || velocityTimer + 0.01f < Time.time)
+        {
+            velocityTimer = Time.time;
+            velocity = rb.velocity;
         }
 
     }
