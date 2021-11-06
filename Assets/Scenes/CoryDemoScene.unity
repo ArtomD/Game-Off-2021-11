@@ -204,14 +204,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50effa1f968e34abca1c48e9ebeba4f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: -25
+  gravity: -9
   runSpeed: 8
   groundDamping: 20
   inAirDamping: 5
-  jumpHeight: 3
-  maxDashTime: 0.25
-  maxDashSpeed: 20
-  maxJumps: 2
+  jumpHeight: 5
+  maxDashTime: 0.32
+  maxDashSpeed: 25
+  maxJumps: 3
 --- !u!114 &2896890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,7 +350,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2896886}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.9353333, y: 0.5895333, z: 0}
+  m_LocalPosition: {x: -2.02, y: -0.74, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -722,7 +722,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178434603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 773388427}
@@ -1529,7 +1529,7 @@ GameObject:
   - component: {fileID: 815153465}
   - component: {fileID: 815153464}
   m_Layer: 10
-  m_Name: Botton
+  m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1561,7 +1561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5bafbb721941545b9a41ddad4bb140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 30
+  power: 40
 --- !u!212 &815153465
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2141,7 +2141,7 @@ GameObject:
   - component: {fileID: 1051068446}
   - component: {fileID: 1051068445}
   m_Layer: 10
-  m_Name: Botton
+  m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2173,7 +2173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5bafbb721941545b9a41ddad4bb140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 30
+  power: 40
 --- !u!212 &1051068446
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2526,7 +2526,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
