@@ -198,7 +198,6 @@ public class Player : MonoBehaviour
         if (_controller.isGrounded && vertical <= -0.5f )
         {
             _velocity.y = -runSpeed;
-            Debug.Log($"trying to fall through platform with velocity {_velocity.y}");
             _controller.ignoreOneWayPlatformsThisFrame = true;
         }
 
