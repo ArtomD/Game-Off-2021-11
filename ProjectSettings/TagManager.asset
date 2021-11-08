@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Floor
+  - Glow
+  - ButtonGlow
+  - TextGlow
+  - TextNoneGlow
+  - SliderGlow
   layers:
   - Default
   - TransparentFX
