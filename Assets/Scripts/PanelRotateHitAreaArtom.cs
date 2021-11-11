@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PanelHitAreaArtom : MonoBehaviour
+public class PanelRotateHitAreaArtom : MonoBehaviour
 {
     [SerializeField]
     private PanelArtom parentPanel;
@@ -27,15 +27,16 @@ public class PanelHitAreaArtom : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log("DASHING: " + collision.gameObject.GetComponent<PlayerControls>().playerIsDashing());
-        PlayerControls1Artom player = collision.gameObject.GetComponent<PlayerControls1Artom>();
+        Debug.Log("DASHING: " + collision.gameObject.GetComponent<Player>().playerIsDashing());
+        Player player = collision.gameObject.GetComponent<Player>();
         if (player == null)
         {
-            player = collision.gameObject.GetComponentInParent<PlayerControls1Artom>();
+            player = collision.gameObject.GetComponentInParent<Player>();
         }
         Debug.Log(player.playerIsDashing());
         if (collision.gameObject.tag == "Player" && player.playerIsDashing())
         {
+
             if (rotateClockwise)
             {
                 parentPanel.rotateClockwise(player, isUp);
@@ -44,7 +45,6 @@ public class PanelHitAreaArtom : MonoBehaviour
             {
                 parentPanel.rotateCounterClockwise(player, isUp);
             }
-
         }
 
     }
