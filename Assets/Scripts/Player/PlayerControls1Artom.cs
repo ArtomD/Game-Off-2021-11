@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerControls1Artom : MonoBehaviour
 {
 
+    public ParticleSystem deathPS;
+    public bool dead;
+
     private bool moveRight;
     private bool moveLeft;
     private bool moveUp;
@@ -33,18 +36,19 @@ public class PlayerControls1Artom : MonoBehaviour
     private bool dashCanTrigger;
     private float dashDuration;
     private float dashCooldown;
-
+    AudioManager am;
     private float horizontalMovement;
     private float horizontalMovementAir;
 
     private float dashVelocityCardinal;
-    private float dashVelocityDiagonal;
-
+    private float dashVelocityDiagonal;    
     public Vector2 velocity;
     public float velocityTimer;
     // Start is called before the first frame update
     void Start()
     {
+        am = FindObjectOfType<AudioManager>();
+        deathPS.Stop();
         facing = Direction.right;
         isRight = true;
         rb = GetComponent<Rigidbody2D>();
@@ -63,11 +67,18 @@ public class PlayerControls1Artom : MonoBehaviour
         dashVelocityCardinal = 38f;
         dashVelocityDiagonal = 27f;
         sqrDashLength = 49f;
+
+
 }
 
     // Update is called once per frame
     void Update()
-    {
+    {        
+        if (dead)
+        {
+            dead = false;
+            Die();
+        }
         if (Input.GetKeyDown(KeyCode.A))
         {
             moveLeft = true;
@@ -454,5 +465,18 @@ public class PlayerControls1Artom : MonoBehaviour
     public void canDashTrigger(bool dashCanTrigger)
     {
         this.dashCanTrigger = dashCanTrigger;
+    }
+
+    public void Die()
+    {        
+        am.PlaySound("PlayerDeath");
+        StartCoroutine(DieAnimate());
+    }
+
+    IEnumerator DieAnimate()
+    {
+        deathPS.Play();
+        yield return new WaitForSeconds(1);
+        deathPS.Stop();
     }
 }
