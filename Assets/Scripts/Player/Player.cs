@@ -120,11 +120,17 @@ public class Player : MonoBehaviour
         }
 
         // Apply velocity based on the current dash input
-        bool tryingToDash = Input.GetKey(KeyCode.Space) && (horizontal != 0 || vertical != 0);
-        bool allowedToDash = !_isDashing  && !_controller.isGrounded && _curJumps < maxJumps;
+        bool tryingToDash = Input.GetKey(KeyCode.Space);
+        bool allowedToDash = !_isDashing  &&  _curJumps < maxJumps;
         
         if (tryingToDash && allowedToDash )
         {
+            // By default dash forward w/out keys
+            if (vertical == 0 && horizontal == 0)
+            {
+                horizontal = transform.localScale.x;
+            }
+
             _isDashing = true;
             _dashTimeRemaining = maxDashTime;
             _curJumps = _curJumps + 1;
