@@ -37,7 +37,7 @@ public class PanelMoveHitArea : MonoBehaviour
             Debug.Log(nextAnchor);
             if (nextAnchor != 0)
             {
-                parentPanel.moveAnchor(nextAnchor == 1);
+                parentPanel.moveAnchor(player, nextAnchor == 1);
             }
             parentPanel.transform.position = parentPanel.moveAnchors[parentPanel.getCurrentAnchor()].position;
         }

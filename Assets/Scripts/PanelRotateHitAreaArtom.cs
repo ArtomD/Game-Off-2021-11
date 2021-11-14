@@ -36,15 +36,7 @@ public class PanelRotateHitAreaArtom : MonoBehaviour
         Debug.Log(player.playerIsDashing());
         if (collision.gameObject.tag == "Player" && player.playerIsDashing())
         {
-
-            if (rotateClockwise)
-            {
-                parentPanel.rotateClockwise(player, isUp);
-            }
-            else
-            {
-                parentPanel.rotateCounterClockwise(player, isUp);
-            }
+            parentPanel.rotate(player, isUp, rotateClockwise);
         }
 
     }

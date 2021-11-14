@@ -26,52 +26,112 @@ public class PanelArtom : MonoBehaviour
     [SerializeField]
     private int prevAnchor;
     // Start is called before the first frame update
+
+    private SpriteRenderer renderer;
+    [SerializeField]
+    private SpriteRenderer[] panelAreas;
+    private float[] color;
+    private bool[] colorDirection;
+
+    private float delayLength;
+    private bool clockwise;
+    private bool rotatePanel;
+
+    private float avalue;
     void Start()
     {
+        renderer = GetComponent<SpriteRenderer>();
+        color = new float[3];
+        colorDirection = new bool[3];
+        color[0] = 50 + Random.value*199;
+        color[1] = 50 + Random.value * 199;
+        color[2] = 50 + Random.value * 199;
+        for (int i = 0; i < color.Length; i++)
+        {
+            if (color[i] >= 250)
+            {
+                colorDirection[i] = false;
+            }
+            else
+            {
+                colorDirection[i] = false;
+            }
+        }
         if (moveAnchors.Length > 0)
         {
             transform.position = moveAnchors[getCurrentAnchor()].position;
         }
+        delayLength = 0.06f;
+        avalue = 0.25f;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Debug.Log(ID + " " + timer);
+        for (int i = 0; i < color.Length; i++)
+        {
+            if (colorDirection[i])
+            {
+                color[i]++;
+                if (color[i] >= 250)
+                {
+                    colorDirection[i] = false;
+                }
+            }
+            else
+            {
+                color[i]--;
+                if (color[i] <= 50)
+                {
+                    colorDirection[i] = true;
+                }
+            }
+        }
+        renderer.color = new Color(color[0]/255, color[1] / 255, color[2] / 255);
+        if (avalue > 0.25f)
+        {
+            avalue -= 0.01f;
+        }
+        for (int i = 0; i<panelAreas.Length;i++)
+        {
+            panelAreas[i].color = new Color(color[0] / 255, color[1] / 255, color[2] / 255, avalue);
+        }
+        if (rotatePanel && timer + delayLength < Time.time)
+        {
+            avalue = 0.8f;
+            if (clockwise)
+            {
+                mainPanel.rotation = Quaternion.Euler(0, 0, mainPanel.eulerAngles.z - rotateAmount);
+            }
+            else
+            {
+                mainPanel.rotation = Quaternion.Euler(0, 0, mainPanel.eulerAngles.z + rotateAmount);
+            }
+            rotatePanel = false;
+        }
     }
 
-    public void rotateClockwise(Player player, bool isUp)
+    public void rotate(Player player, bool isUp, bool clockwise)
     {
         Debug.Log("TRYING TO ROTATE: " + ID + " " + timer + " " + Time.time);
         if (timer + rotateCD < Time.time)
         {
-            //launchPlayer(player, isUp);
-            mainPanel.rotation = Quaternion.Euler(0, 0, mainPanel.eulerAngles.z - rotateAmount);
+            launchPlayer(player, isUp, 35);
+            this.clockwise = clockwise;
+            rotatePanel = true;
             timer = Time.time;
-        }
-        
-    }
-    public void rotateCounterClockwise(Player player, bool isUp)
-    {
-        Debug.Log("TRYING TO ROTATE: " + ID + " " + timer + " " + Time.time);
-        if (timer + rotateCD < Time.time)
-        {
-            //launchPlayer(player, isUp);
-            mainPanel.rotation = Quaternion.Euler(0, 0, mainPanel.eulerAngles.z + rotateAmount);
-            timer = Time.time;
-        }
-
+        }        
     }
 
-    public void launchPlayer(PlayerControls1Artom player, bool isUp)
+    public void launchPlayer(Player player, bool isUp, float force)
     {
         if (isUp)
         {
-            player.panelDashNoReset(transform.up);
+            player.ApplyForce(transform.up* force);
         }
         else
         {
-            player.panelDashNoReset(-transform.up);
+            player.ApplyForce(-transform.up * force);
         }
         
     }
@@ -144,8 +204,9 @@ public class PanelArtom : MonoBehaviour
         return 0;
     }
 
-    public void moveAnchor(bool forward)
+    public void moveAnchor(Player player, bool forward)
     {
+        launchPlayer(player, !forward, 15);
         if (forward)
         {
             if (anchorIndex < moveAnchors.Length-1)
