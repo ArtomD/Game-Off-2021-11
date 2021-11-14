@@ -9,9 +9,6 @@ public class AudioManager : MonoBehaviour
 
     [Range(0f, 1f)]
     public float masterVolume = 1;
-    
-    [Range(.1f, 3f)]
-    public float defaultPitch = 1;
 
     [SerializeField]
     public static AudioClip playerDeath;
@@ -20,34 +17,38 @@ public class AudioManager : MonoBehaviour
 
     public void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            instance = this;
-        }
+        if (instance != null && instance != this)        
+            Destroy(this.gameObject);        
+        else        
+            instance = this;      
 
-        DontDestroyOnLoad(gameObject);
-        
+        DontDestroyOnLoad(gameObject);        
     }
 
     private void Start()
     {
-        foreach (Sound sound in sounds)
-        {
+        foreach (Sound sound in sounds)        
             sound.Set(gameObject.AddComponent<AudioSource>());
-        }        
+        masterVolume = AudioListener.volume;
+        PlaySound(Sound.Name.Soundtrack.ToString());
     }
 
 
     public void PlaySound(string id)
     {
-        Array.Find(sounds, sound => sound.name == id).Play();         
+        Array.Find(sounds, sound => sound.name.ToString() == id).Play();         
     }
 
-    
+    public void UpdateVolue(float volume)
+    {
+        masterVolume = volume;
+        AudioListener.volume = masterVolume;        
+    }
+
+    public float GetVolume()
+    {
+        return masterVolume;
+    }
 
 
 }

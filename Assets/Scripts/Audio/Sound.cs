@@ -3,7 +3,15 @@ using UnityEngine;
 [System.Serializable]
 public class Sound
 {
-    public string name;
+    public Name name;
+
+    public bool loop;
+
+    public enum Name
+    {
+        PlayerHit,
+        Soundtrack
+    }
 
     public AudioClip clip;
 
@@ -21,6 +29,7 @@ public class Sound
         source.clip = clip;
         source.volume = volume;
         source.pitch = pitch;
+        source.loop = loop;
     }
 
     public void Play()

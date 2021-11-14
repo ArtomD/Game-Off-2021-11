@@ -469,7 +469,7 @@ public class PlayerControls1Artom : MonoBehaviour
 
     public void Die()
     {        
-        am.PlaySound("PlayerDeath");
+        am.PlaySound(Sound.Name.PlayerHit.ToString());
         StartCoroutine(DieAnimate());
     }
 
