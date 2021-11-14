@@ -213,4 +213,9 @@ public class Player : MonoBehaviour
         _velocity = _controller.velocity;
     }
 
+    public bool playerIsDashing()
+    {
+        return _isDashing;
+    }
+
 }
