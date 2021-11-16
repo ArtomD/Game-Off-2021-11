@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerControls1Artom : MonoBehaviour
 {
-
-    public ParticleSystem deathPS;
     public bool dead;
 
     private bool moveRight;
@@ -47,8 +45,7 @@ public class PlayerControls1Artom : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        am = FindObjectOfType<AudioManager>();
-        deathPS.Stop();
+        am = FindObjectOfType<AudioManager>();        
         facing = Direction.right;
         isRight = true;
         rb = GetComponent<Rigidbody2D>();
@@ -73,12 +70,8 @@ public class PlayerControls1Artom : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
-        if (dead)
-        {
-            dead = false;
-            Die();
-        }
+    {       
+        
         if (Input.GetKeyDown(KeyCode.A))
         {
             moveLeft = true;
@@ -475,8 +468,8 @@ public class PlayerControls1Artom : MonoBehaviour
 
     IEnumerator DieAnimate()
     {
-        deathPS.Play();
+       
         yield return new WaitForSeconds(1);
-        deathPS.Stop();
+       
     }
 }

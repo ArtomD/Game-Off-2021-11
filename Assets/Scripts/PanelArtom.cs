@@ -38,6 +38,8 @@ public class PanelArtom : MonoBehaviour
     private bool rotatePanel;
 
     private float avalue;
+
+    public bool completed;
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
@@ -239,5 +241,11 @@ public class PanelArtom : MonoBehaviour
         {
             nextAnchor = -1;
         }
+    }
+
+    public bool Completed()
+    {
+        Debug.Log("Completed() methond not implemented.");
+        return completed;
     }
 }

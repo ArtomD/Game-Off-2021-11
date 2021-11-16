@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     private float _dashTimeRemaining = 0f;
     private Vector2 impulseForce = new Vector2(0, 0);
 
+    private Disolver disolver;
+
     void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -36,6 +38,9 @@ public class Player : MonoBehaviour
         _controller.onControllerCollidedEvent += onControllerCollider;
         _controller.onTriggerEnterEvent += onTriggerEnterEvent;
         _controller.onTriggerExitEvent += onTriggerExitEvent;
+        disolver = GetComponent<Disolver>();
+        disolver.Initialize();
+        disolver.In();
     }
 
 
@@ -210,12 +215,17 @@ public class Player : MonoBehaviour
         _controller.move(_velocity * Time.deltaTime);
 
         // grab our current _velocity to use as a base for all calculations
-        _velocity = _controller.velocity;
+        _velocity = _controller.velocity;               
     }
 
     public bool playerIsDashing()
     {
         return _isDashing;
+    }
+
+    public void HitObstacle()
+    {
+        disolver.Out();
     }
 
 }

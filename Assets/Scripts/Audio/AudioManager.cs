@@ -11,7 +11,8 @@ public class AudioManager : MonoBehaviour
     public float masterVolume = 1;
 
     [SerializeField]
-    public static AudioClip playerDeath;
+    public static AudioClip player
+        ;
 
     public static AudioManager Instance { get { return instance; } }
 
