@@ -40,14 +40,15 @@ public class PanelArtom : MonoBehaviour
     private float avalue;
 
     public bool completed;
+    private bool cycleColors;
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
         color = new float[3];
         colorDirection = new bool[3];
-        color[0] = 50 + Random.value*199;
-        color[1] = 50 + Random.value * 199;
-        color[2] = 50 + Random.value * 199;
+        color[0] = 50;// 50 + Random.value*199;
+        color[1] = 250;// 50 + Random.value * 199;
+        color[2] = 25;// 50 + Random.value * 199;
         for (int i = 0; i < color.Length; i++)
         {
             if (color[i] >= 250)
@@ -65,27 +66,30 @@ public class PanelArtom : MonoBehaviour
         }
         delayLength = 0.06f;
         avalue = 0.25f;
+        cycleColors = false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        for (int i = 0; i < color.Length; i++)
-        {
-            if (colorDirection[i])
+        if (cycleColors) { 
+            for (int i = 0; i < color.Length; i++)
             {
-                color[i]++;
-                if (color[i] >= 250)
+                if (colorDirection[i])
                 {
-                    colorDirection[i] = false;
+                    color[i]++;
+                    if (color[i] >= 250)
+                    {
+                        colorDirection[i] = false;
+                    }
                 }
-            }
-            else
-            {
-                color[i]--;
-                if (color[i] <= 50)
+                else
                 {
-                    colorDirection[i] = true;
+                    color[i]--;
+                    if (color[i] <= 50)
+                    {
+                        colorDirection[i] = true;
+                    }
                 }
             }
         }
