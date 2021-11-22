@@ -225,7 +225,7 @@ public class Player : MonoBehaviour
 
     public void HitObstacle()
     {
-        disolver.Out();
+        disolver.Out();        
     }
 
 }
