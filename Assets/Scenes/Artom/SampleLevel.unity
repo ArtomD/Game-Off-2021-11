@@ -887,7 +887,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 11
+  orthographic size: 18
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1137,6 +1137,18 @@ PrefabInstance:
     - target: {fileID: 979593188758200157, guid: c58379c6bf09e7e4aac127ce6f36eeac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294418374906196219, guid: c58379c6bf09e7e4aac127ce6f36eeac, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294418374906196219, guid: c58379c6bf09e7e4aac127ce6f36eeac, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294418374906196219, guid: c58379c6bf09e7e4aac127ce6f36eeac, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8912774046689463700, guid: c58379c6bf09e7e4aac127ce6f36eeac, type: 3}
       propertyPath: m_Name
@@ -1737,6 +1749,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 270
       objectReference: {fileID: 0}
+    - target: {fileID: 6294418374906196219, guid: c58379c6bf09e7e4aac127ce6f36eeac, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294418374906196219, guid: c58379c6bf09e7e4aac127ce6f36eeac, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294418374906196219, guid: c58379c6bf09e7e4aac127ce6f36eeac, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8912774046689463700, guid: c58379c6bf09e7e4aac127ce6f36eeac, type: 3}
       propertyPath: m_Name
       value: LineConnection (4)
@@ -1906,11 +1930,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 68933226017801971, guid: a0c277d45caed6142845d33b53e08289, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.38268343
+      value: 0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 68933226017801971, guid: a0c277d45caed6142845d33b53e08289, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -45
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 68933226017801974, guid: a0c277d45caed6142845d33b53e08289, type: 3}
       propertyPath: rotateAmount

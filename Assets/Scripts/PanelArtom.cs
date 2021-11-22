@@ -67,6 +67,17 @@ public class PanelArtom : MonoBehaviour
         delayLength = 0.06f;
         avalue = 0.25f;
         cycleColors = false;
+        for (int i = 0; i < moveAnchors.Length; i++)
+        {
+            if (i != anchorIndex)
+            {
+                moveAnchors[i].gameObject.GetComponent<SlidePanelAnchor>().deactivateAnchor();
+            }
+            else
+            {
+                moveAnchors[i].gameObject.GetComponent<SlidePanelAnchor>().activateAnchor();
+            }
+        }
     }
 
     // Update is called once per frame
@@ -131,6 +142,7 @@ public class PanelArtom : MonoBehaviour
 
     public void launchPlayer(Player player, bool isUp, float force)
     {
+        Debug.Log("LAUNCHING : " + isUp);
         if (isUp)
         {
             player.ApplyForce(transform.up* force);
@@ -192,27 +204,27 @@ public class PanelArtom : MonoBehaviour
         {
             targetVector = -transform.up;
         }
+        Debug.Log("TARGET VECTOR: " + targetVector);
         if(!(nextAnchorVector().x==0 && nextAnchorVector().y==0) && !(prevAnchorVector().x == 0 && prevAnchorVector().y == 0))
         {
             return Vector2.Angle(nextAnchorVector() - targetVector, targetVector) < Vector2.Angle(prevAnchorVector() - targetVector, targetVector) ? -1 : 1;
         }
         else if(nextAnchorVector().x == 0 && nextAnchorVector().y == 0)
         {
-            Debug.Log(Vector2.Angle(nextAnchorVector() - targetVector, targetVector));
+            Debug.Log(Vector2.Angle(prevAnchorVector() - targetVector, targetVector));
             float angle = Vector2.Angle(prevAnchorVector() - targetVector, targetVector);
-            return (angle <= 180 && angle > 0) ? -1 : 0;
+            return (angle > 90) ? -1 : 0;
         }else if (prevAnchorVector().x == 0 && prevAnchorVector().y == 0)
         {
             Debug.Log(Vector2.Angle(nextAnchorVector() - targetVector, targetVector));
             float angle = Vector2.Angle(nextAnchorVector() - targetVector, targetVector);
-            return (angle <= 180 && angle > 0) ? 1 : 0;
+            return (angle > 90) ? 1 : 0;
         }
         return 0;
     }
 
     public void moveAnchor(Player player, bool forward)
     {
-        launchPlayer(player, !forward, 15);
         if (forward)
         {
             if (anchorIndex < moveAnchors.Length-1)
@@ -244,6 +256,17 @@ public class PanelArtom : MonoBehaviour
         else
         {
             nextAnchor = -1;
+        }
+        for (int i = 0; i < moveAnchors.Length; i++)
+        {
+            if (i != anchorIndex)
+            {
+                moveAnchors[i].gameObject.GetComponent<SlidePanelAnchor>().deactivateAnchor();
+            }
+            else
+            {
+                moveAnchors[i].gameObject.GetComponent<SlidePanelAnchor>().activateAnchor();
+            }
         }
     }
 
