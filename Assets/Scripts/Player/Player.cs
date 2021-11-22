@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
         }
 
         // Apply velocity based on the current dash input
-        bool tryingToDash = Input.GetKey(KeyCode.Space);
+        bool tryingToDash = Input.GetKey(KeyCode.LeftShift);
         bool allowedToDash = !_isDashing  &&  _curJumps < maxJumps;
         
         if (tryingToDash && allowedToDash )
@@ -160,7 +160,7 @@ public class Player : MonoBehaviour
 
 
         // Add an upwards velocity if trying to jump
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (  _controller.isGrounded) {
                 _velocity.y = Mathf.Sqrt(2f * jumpHeight * -gravity  * inAirDamping);
