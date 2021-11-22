@@ -1218,6 +1218,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 983757658898808441, guid: 27be80ee0072a15418bc7f663e6d6ec6, type: 3}
+      propertyPath: isSlide
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 983757658898808441, guid: 27be80ee0072a15418bc7f663e6d6ec6, type: 3}
+      propertyPath: isRotate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 983757658898808441, guid: 27be80ee0072a15418bc7f663e6d6ec6, type: 3}
       propertyPath: rotateCD
       value: 0.12
       objectReference: {fileID: 0}

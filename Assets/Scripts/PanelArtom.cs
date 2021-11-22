@@ -9,6 +9,15 @@ public class PanelArtom : MonoBehaviour
     private Transform mainPanel;
 
     [SerializeField]
+    private bool isRotate;
+    [SerializeField]
+    private float goalAngle;
+    [SerializeField]
+    private bool isSlide;
+    [SerializeField]
+    private int goalAnchor;
+
+    [SerializeField]
     private float rotateAmount;
     [SerializeField]
     private float rotateCD;
@@ -272,6 +281,21 @@ public class PanelArtom : MonoBehaviour
 
     public bool Completed()
     {
+        completed = true;
+        if (isRotate)
+        {
+            if (Mathf.Abs(transform.eulerAngles.z % 360) != goalAngle)
+            {
+                completed = false;
+            }
+        }
+        if (isSlide)
+        {
+            if(anchorIndex != goalAnchor)
+            {
+                completed = false;
+            }
+        }
         Debug.Log("Completed() methond not implemented.");
         return completed;
     }
