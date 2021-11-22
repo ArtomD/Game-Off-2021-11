@@ -863,24 +863,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelConnections:
-  - startPosition: {fileID: 1367518050699827869}
+  - connection: {fileID: 0}
+    targetPanel: {fileID: 0}
+    startPosition: {fileID: 1367518050699827869}
     endPosition: {fileID: 1367518049487827015}
+    lineJoint: {fileID: 0}
+    lineMain: []
+    effect: {fileID: 0}
+  - connection: {fileID: 0}
     targetPanel: {fileID: 0}
-    connection: {fileID: 0}
-  - startPosition: {fileID: 1367518050770072263}
+    startPosition: {fileID: 1367518050770072263}
     endPosition: {fileID: 1367518048830834300}
-    targetPanel: {fileID: 0}
-    connection: {fileID: 0}
+    lineJoint: {fileID: 0}
+    lineMain: []
+    effect: {fileID: 0}
   start:
+    connection: {fileID: 0}
+    targetPanel: {fileID: 0}
     startPosition: {fileID: 1367518049111787442}
     endPosition: {fileID: 1367518049923857401}
-    targetPanel: {fileID: 0}
-    connection: {fileID: 0}
+    lineJoint: {fileID: 0}
+    lineMain: []
+    effect: {fileID: 0}
   end:
+    connection: {fileID: 0}
+    targetPanel: {fileID: 0}
     startPosition: {fileID: 1367518050880510010}
     endPosition: {fileID: 1367518049817806099}
-    targetPanel: {fileID: 0}
-    connection: {fileID: 0}
+    lineJoint: {fileID: 0}
+    lineMain: []
+    effect: {fileID: 0}
   visualTemplate: {fileID: 8957001453422681594, guid: 4725ef8b961a3a54ca1f59a4835f973c, type: 3}
 --- !u!1 &1367518050699827869
 GameObject:

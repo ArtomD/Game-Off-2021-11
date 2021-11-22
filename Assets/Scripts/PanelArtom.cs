@@ -283,10 +283,10 @@ public class PanelArtom : MonoBehaviour
     {
         completed = true;
         if (isRotate)
-        {
-            if (Mathf.Abs(transform.eulerAngles.z % 360) != goalAngle)
+        {            
+            if (Mathf.Abs(transform.eulerAngles.z % 360) != goalAngle && Mathf.Abs(transform.eulerAngles.z % 360) != Mathf.Abs(goalAngle - 180))
             {
-                completed = false;
+                completed = false;                
             }
         }
         if (isSlide)
@@ -296,7 +296,7 @@ public class PanelArtom : MonoBehaviour
                 completed = false;
             }
         }
-        Debug.Log("Completed() methond not implemented.");
+        
         return completed;
     }
 }

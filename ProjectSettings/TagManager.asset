@@ -10,6 +10,10 @@ TagManager:
   - TextGlow
   - TextNoneGlow
   - SliderGlow
+  - LineMain
+  - LineJoint
+  - StartPoint
+  - EndPoint
   layers:
   - Default
   - TransparentFX

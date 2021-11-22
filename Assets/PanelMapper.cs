@@ -10,9 +10,18 @@ public class PanelMapper : MonoBehaviour
     public PanelConnection end;
     public GameObject visualTemplate;
 
+    public Material glow;
+    public Material dim;
+
     // Start is called before the first frame update
     void Start()
     {
+        foreach(PanelConnection connection in panelConnections)
+        {
+            connection.Init(glow, dim);
+        }
+        start.Init(glow, dim);
+        end.Init(glow, dim);
         Activate(start);
         Process();
     }
@@ -35,7 +44,10 @@ public class PanelMapper : MonoBehaviour
             }
             else
             {
-                if (panelConnections[panelIndex].targetPanel.Completed())
+                if(panelConnections[panelIndex].targetPanel == null)
+                {
+                    Activate(panelConnections[panelIndex]);
+                }else if (panelConnections[panelIndex].targetPanel.Completed())
                 {
                     Activate(panelConnections[panelIndex]);
                 }                    
@@ -51,7 +63,12 @@ public class PanelMapper : MonoBehaviour
 
         if (!disconnected)
         {
-            if(end.targetPanel.Completed())
+            if(end.targetPanel == null)
+            {
+                Activate(end);
+                Win();
+            }
+            else if(end.targetPanel.Completed())
             {
                 Activate(end);
                 Win();
@@ -65,6 +82,7 @@ public class PanelMapper : MonoBehaviour
 
     private float GetAngle(Vector3 start, Vector3 end)
     {
+        Debug.Log(end - start);
         return Vector3.SignedAngle(new Vector3(0, 1, 0), end - start, Vector3.forward);
     }
 
@@ -75,25 +93,34 @@ public class PanelMapper : MonoBehaviour
 
     private void Activate(PanelConnection panel)
     {        
-        if(panel.connection == null)
+        if(panel.effect == null)
         {
-            panel.connection = Instantiate(visualTemplate, panel.startPosition.transform.position, Quaternion.identity);
+            panel.effect = Instantiate(visualTemplate, panel.startPosition.transform.position, Quaternion.identity);
             
-            panel.connection.transform.parent = gameObject.transform;
+            panel.effect.transform.parent = gameObject.transform;
 
-            panel.connection.gameObject.transform.localScale = new Vector3(panel.connection.gameObject.transform.localScale.x, Vector3.Distance(panel.endPosition.gameObject.transform.position, panel.startPosition.gameObject.transform.position), panel.connection.gameObject.transform.localScale.z);
-            panel.connection.transform.Rotate(panel.connection.transform.rotation.x, panel.connection.transform.rotation.y, GetAngle(panel.startPosition.gameObject.transform.position, panel.endPosition.gameObject.transform.position), Space.World);
+            panel.effect.gameObject.transform.localScale = new Vector3(panel.effect.gameObject.transform.localScale.x, Vector3.Distance(panel.endPosition.gameObject.transform.position, panel.startPosition.gameObject.transform.position), panel.effect.gameObject.transform.localScale.z);
+
+            Debug.Log(GetAngle(panel.startPosition.gameObject.transform.position, panel.endPosition.gameObject.transform.position));
+
+            panel.effect.transform.Rotate(panel.effect.transform.rotation.x, panel.effect.transform.rotation.y, GetAngle(panel.startPosition.gameObject.transform.position, panel.endPosition.gameObject.transform.position), Space.World);
         }
         else
         {
-            panel.connection.SetActive(true);
+            panel.effect.SetActive(true);
         }
+        panel.Glow();
     }
 
     private void Deactivate(PanelConnection panel)
     {
-        if(panel.connection != null)
-            panel.connection.SetActive(false);
+        if(panel.effect != null)
+        {
+            panel.effect.SetActive(false);            
+        }
+
+        panel.Dim();
+
     }
 
 }
