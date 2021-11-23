@@ -49,6 +49,9 @@ public class PanelArtom : MonoBehaviour
     private bool clockwise;
     private bool rotatePanel;
 
+    public Color completeColor = new Color(191 / 255f, 168 / 255f, 39 / 255f, 0.8f);
+    public Color targetColor = new Color(191 / 255f, 168 / 255f, 39 / 255f, 0.8f);
+
     private float avalue;
 
     public bool completed;
@@ -305,11 +308,11 @@ public class PanelArtom : MonoBehaviour
         }
         if (completed)
         {
-            goalSprite.color = new Color(191/255f,168/255f, 39/255f, 0.8f);
+            goalSprite.color = completeColor;
         }
         else
         {
-            goalSprite.color = new Color(245/255f, 25/255f,125/255, 0.8f);
+            goalSprite.color = targetColor;
         }
     }
 
