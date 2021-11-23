@@ -13,6 +13,8 @@ public class PanelArtom : MonoBehaviour
     [SerializeField]
     private float goalAngle;
     [SerializeField]
+    private int timesIn360;
+    [SerializeField]
     private bool isSlide;
     [SerializeField]
     private int goalAnchor;
@@ -35,7 +37,8 @@ public class PanelArtom : MonoBehaviour
     [SerializeField]
     private int prevAnchor;
     // Start is called before the first frame update
-
+    [SerializeField]
+    private SpriteRenderer goalSprite;
     private SpriteRenderer renderer;
     [SerializeField]
     private SpriteRenderer[] panelAreas;
@@ -87,6 +90,7 @@ public class PanelArtom : MonoBehaviour
                 moveAnchors[i].gameObject.GetComponent<SlidePanelAnchor>().activateAnchor();
             }
         }
+        CheckCompletion();
     }
 
     // Update is called once per frame
@@ -127,12 +131,13 @@ public class PanelArtom : MonoBehaviour
             avalue = 0.8f;
             if (clockwise)
             {
-                mainPanel.rotation = Quaternion.Euler(0, 0, mainPanel.eulerAngles.z - rotateAmount);
+                mainPanel.rotation = Quaternion.Euler(0, 0, Mathf.RoundToInt(mainPanel.eulerAngles.z - rotateAmount));
             }
             else
             {
-                mainPanel.rotation = Quaternion.Euler(0, 0, mainPanel.eulerAngles.z + rotateAmount);
+                mainPanel.rotation = Quaternion.Euler(0, 0, Mathf.RoundToInt(mainPanel.eulerAngles.z + rotateAmount));
             }
+            CheckCompletion();
             rotatePanel = false;
         }
     }
@@ -277,14 +282,16 @@ public class PanelArtom : MonoBehaviour
                 moveAnchors[i].gameObject.GetComponent<SlidePanelAnchor>().activateAnchor();
             }
         }
+        transform.position = moveAnchors[getCurrentAnchor()].position;
+        CheckCompletion();
     }
 
-    public bool Completed()
+    public void CheckCompletion()
     {
         completed = true;
         if (isRotate)
-        {            
-            if (Mathf.Abs(transform.eulerAngles.z % 360) != goalAngle && Mathf.Abs(transform.eulerAngles.z % 360) != Mathf.Abs(goalAngle - 180))
+        {
+            if (Mathf.RoundToInt(Mathf.Abs(transform.eulerAngles.z % (360/timesIn360))) != goalAngle)
             {
                 completed = false;                
             }
@@ -296,7 +303,18 @@ public class PanelArtom : MonoBehaviour
                 completed = false;
             }
         }
-        
+        if (completed)
+        {
+            goalSprite.color = new Color(191/255f,168/255f, 39/255f, 0.8f);
+        }
+        else
+        {
+            goalSprite.color = new Color(245/255f, 25/255f,125/255, 0.8f);
+        }
+    }
+
+    public bool isCompleted()
+    {
         return completed;
     }
 }

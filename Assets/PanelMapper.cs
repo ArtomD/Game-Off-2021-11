@@ -47,7 +47,7 @@ public class PanelMapper : MonoBehaviour
                 if(panelConnections[panelIndex].targetPanel == null)
                 {
                     Activate(panelConnections[panelIndex]);
-                }else if (panelConnections[panelIndex].targetPanel.Completed())
+                }else if (panelConnections[panelIndex].targetPanel.isCompleted())
                 {
                     Activate(panelConnections[panelIndex]);
                 }                    
@@ -68,7 +68,7 @@ public class PanelMapper : MonoBehaviour
                 Activate(end);
                 Win();
             }
-            else if(end.targetPanel.Completed())
+            else if(end.targetPanel.isCompleted())
             {
                 Activate(end);
                 Win();
