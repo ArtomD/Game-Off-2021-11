@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class UIAnimator : MonoBehaviour
 {
-    public static UIAnimator instance = null;
+    
 
     private GameObject[] glows;
     private GameObject[] TMPFields;
@@ -24,25 +24,18 @@ public class UIAnimator : MonoBehaviour
 
     void Awake()
     {
-        
-        if (instance == null)            
-            instance = this;
-                
-        else if (instance != this)
-            Destroy(gameObject);
-                
-        DontDestroyOnLoad(gameObject);        
-        
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         glows = GameObject.FindGameObjectsWithTag("ButtonGlow");
         TMPFields = GameObject.FindGameObjectsWithTag("TextGlow");
         TMPNonGlowFields = GameObject.FindGameObjectsWithTag("TextNoneGlow");
         SliderGlowFields = GameObject.FindGameObjectsWithTag("SliderGlow");
         Debug.Log(TMPFields.Length);
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+       
     }
 
     // Update is called once per frame

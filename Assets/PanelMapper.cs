@@ -89,6 +89,7 @@ public class PanelMapper : MonoBehaviour
     private void Win()
     {
         Debug.Log("YOU WIN!");
+        FindObjectOfType<LevelController>().Win();
     }
 
     private void Activate(PanelConnection panel)
