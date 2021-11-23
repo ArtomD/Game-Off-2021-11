@@ -9,6 +9,8 @@ public class AudioManager : MonoBehaviour
 
     [Range(0f, 1f)]
     public float masterVolume = 1;
+    private float holdVolume = 1;
+    private bool mute = false;
 
     [SerializeField]
     public static AudioClip player;
@@ -50,5 +52,24 @@ public class AudioManager : MonoBehaviour
         return masterVolume;
     }
 
+    public void Mute()
+    {
+        holdVolume = AudioListener.volume;
+        UpdateVolue(0);
+        mute = true;
+    }
 
+    public void Unmute()
+    {        
+        UpdateVolue(holdVolume);
+        mute = false;
+    }
+
+    public void ToggleMute()
+    {
+        if (mute)
+            Unmute();
+        else
+            Mute();
+    }
 }
