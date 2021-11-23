@@ -1364,6 +1364,30 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 983757658898808441, guid: 27be80ee0072a15418bc7f663e6d6ec6, type: 3}
+      propertyPath: targetColor.b
+      value: 0.15294117
+      objectReference: {fileID: 0}
+    - target: {fileID: 983757658898808441, guid: 27be80ee0072a15418bc7f663e6d6ec6, type: 3}
+      propertyPath: targetColor.g
+      value: 0.20936234
+      objectReference: {fileID: 0}
+    - target: {fileID: 983757658898808441, guid: 27be80ee0072a15418bc7f663e6d6ec6, type: 3}
+      propertyPath: completeColor.a
+      value: 0.9137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 983757658898808441, guid: 27be80ee0072a15418bc7f663e6d6ec6, type: 3}
+      propertyPath: completeColor.b
+      value: 0.8733502
+      objectReference: {fileID: 0}
+    - target: {fileID: 983757658898808441, guid: 27be80ee0072a15418bc7f663e6d6ec6, type: 3}
+      propertyPath: completeColor.g
+      value: 0.4138483
+      objectReference: {fileID: 0}
+    - target: {fileID: 983757658898808441, guid: 27be80ee0072a15418bc7f663e6d6ec6, type: 3}
+      propertyPath: completeColor.r
+      value: 0.9433962
+      objectReference: {fileID: 0}
+    - target: {fileID: 983757658898808441, guid: 27be80ee0072a15418bc7f663e6d6ec6, type: 3}
       propertyPath: panelAreas.Array.size
       value: 4
       objectReference: {fileID: 0}
