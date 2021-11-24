@@ -51,7 +51,8 @@ public class PanelArtom : MonoBehaviour
 
     public Color completeColor = new Color(191 / 255f, 168 / 255f, 39 / 255f, 0.8f);
     public Color targetColor = new Color(191 / 255f, 168 / 255f, 39 / 255f, 0.8f);
-
+    [SerializeField]
+    private GameObject completedCollider;
     private float avalue;
 
     public bool completed;
@@ -305,19 +306,25 @@ public class PanelArtom : MonoBehaviour
             {
                 completed = false;
             }
-        }
-        if (completed)
-        {
-            goalSprite.color = completeColor;
-        }
-        else
-        {
-            goalSprite.color = targetColor;
-        }
+        }        
     }
 
     public bool isCompleted()
     {
         return completed;
+    }
+
+    public void panelOnState(bool state)
+    {
+        if (state)
+        {
+            goalSprite.color = completeColor;
+            completedCollider.SetActive(true);
+        }
+        else
+        {
+            goalSprite.color = targetColor;
+            completedCollider.SetActive(false);
+        }
     }
 }

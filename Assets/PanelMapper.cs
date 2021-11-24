@@ -111,6 +111,7 @@ public class PanelMapper : MonoBehaviour
             panel.effect.SetActive(true);
         }
         panel.Glow();
+        panel?.targetPanel?.panelOnState(true);
     }
 
     private void Deactivate(PanelConnection panel)
@@ -121,7 +122,7 @@ public class PanelMapper : MonoBehaviour
         }
 
         panel.Dim();
-
+        panel?.targetPanel?.panelOnState(false);
     }
 
 }
