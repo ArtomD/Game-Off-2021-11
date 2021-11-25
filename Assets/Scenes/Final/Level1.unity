@@ -5181,14 +5181,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 159664306614033227, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 159664307192422130, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 8177709215864683765, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -5232,10 +5224,6 @@ PrefabInstance:
     - target: {fileID: 8177709215864683765, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8177709215864683766, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
-      propertyPath: desolveSpeed
-      value: 0.0005
       objectReference: {fileID: 0}
     - target: {fileID: 8177709215864683774, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
       propertyPath: m_Name

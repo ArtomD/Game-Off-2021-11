@@ -889,7 +889,7 @@ MonoBehaviour:
   levelText: {fileID: 6052663688278233119}
   levelTime: {fileID: 6052663686880481452}
   levelTimeCompleted: {fileID: 6160458795491009690}
-  restartHoldDuration: 1
+  restartHoldDuration: 0.5
   slider: {fileID: 6052663688344165183}
   winScreen: {fileID: 601987798490475185}
   levelName: Level One

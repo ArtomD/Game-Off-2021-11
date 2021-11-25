@@ -224,8 +224,9 @@ public class Player : MonoBehaviour
     }
 
     public void HitObstacle()
-    {
-        disolver.Out();        
+    {        
+        disolver.Out();
+        FindObjectOfType<LevelController>().Die();
     }
 
 }

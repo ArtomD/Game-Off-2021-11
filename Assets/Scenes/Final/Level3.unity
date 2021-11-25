@@ -2839,7 +2839,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.1792453, g: 0, b: 0.17907828, a: 0.69803923}
+  m_Color: {r: 0.0627451, g: 0.023529412, b: 0.15294118, a: 0.9019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5443,14 +5443,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 159664306614033227, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 159664307192422130, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 8177709215864683765, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -5494,10 +5486,6 @@ PrefabInstance:
     - target: {fileID: 8177709215864683765, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8177709215864683766, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
-      propertyPath: desolveSpeed
-      value: 0.0005
       objectReference: {fileID: 0}
     - target: {fileID: 8177709215864683774, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
       propertyPath: m_Name

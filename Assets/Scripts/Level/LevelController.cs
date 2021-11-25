@@ -13,7 +13,7 @@ public class LevelController : MonoBehaviour
     public GameObject levelText;
     public GameObject levelTime;
     public GameObject levelTimeCompleted;
-    public int restartHoldDuration = 2;
+    public float restartHoldDuration = 2;
     public Slider slider;
     private DateTime restartTimer;
     private bool keyDown = false;    
@@ -68,16 +68,26 @@ public class LevelController : MonoBehaviour
     public void Win()
     {
         won = true;
-        StartCoroutine(WinIEnum());        
+        StartCoroutine(EndIEnum(true));        
     }
 
-    private IEnumerator WinIEnum()
+    public void Die()
+    {
+        won = true;
+        StartCoroutine(EndIEnum(false));
+    }
+
+    private IEnumerator EndIEnum(bool win)
     {
         FindObjectOfType<Player>().GetComponent<Disolver>().Out();
+        FindObjectOfType<Player>().GetComponent<Collider2D>().isTrigger = false;
         yield return new WaitForSeconds(1);
         FindObjectOfType<Player>().gameObject.SetActive(false);          
-        yield return new WaitForSeconds(0.1f);        
-        winScreen.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        if (win)
+            winScreen.SetActive(true);
+        else
+            SceneLoader.RestartLevel();
         //SceneLoader.LoadNextLevel();
     }
 
