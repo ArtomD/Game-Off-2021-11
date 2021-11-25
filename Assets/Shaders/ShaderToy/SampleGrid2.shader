@@ -93,7 +93,7 @@ Shader "Unlit/SampleGrid2"
                 float gridLineThickness = 1. / _ScreenParams.y;
                 float2 grid = step(mod(uv, .05), float2(gridLineThickness, gridLineThickness));
 
-                return float4(0., 0., val * (grid.x + grid.y), 1.);
+                return float4(.0, val * (grid.x + grid.y), val * (grid.x + grid.y), 1.);
 
             }
 

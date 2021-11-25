@@ -234,7 +234,7 @@ MonoBehaviour:
   jumpHeight: 5
   maxDashTime: 0.32
   maxDashSpeed: 25
-  maxJumps: 3
+  maxJumps: 1
 --- !u!114 &8177709215864683766
 MonoBehaviour:
   m_ObjectHideFlags: 0

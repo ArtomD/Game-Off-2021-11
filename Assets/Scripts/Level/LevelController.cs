@@ -41,7 +41,7 @@ public class LevelController : MonoBehaviour
         if (!won)
             elapsedTime = (float)(DateTime.UtcNow - time).TotalSeconds;
 
-        levelTime.GetComponent<TextMeshProUGUI>().text = "Elapsed Time - " + Mathf.Round(elapsedTime * 100.0f ) / 100.0f;
+        levelTime.GetComponent<TextMeshProUGUI>().text = String.Format("{0:F2}", (Mathf.Round(elapsedTime * 100.0f ) / 100.0f));
         levelTimeCompleted.GetComponent<TextMeshProUGUI>().text = "total time " + Mathf.Round(elapsedTime * 100.0f) / 100.0f + " seconds";
 
         if (Input.GetKeyDown(KeyCode.R))
