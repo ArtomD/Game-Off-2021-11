@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     private Vector2 impulseForce = new Vector2(0, 0);
 
     private Disolver _disolver;
+    private Transform _trail;
 
     void Awake()
     {
@@ -40,7 +41,7 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
         _disolver = GetComponent<Disolver>();
         _controller = GetComponent<CharacterController2D>();
-
+        _trail = transform.Find("10 Trail");
 
         // listen to some events for illustration purposes
         _controller.onControllerCollidedEvent += onControllerCollider;
@@ -57,13 +58,15 @@ public class Player : MonoBehaviour
     public void Start()
     {
         _disolver.In();
-        _controller.enabled = false;
+        _trail.gameObject.SetActive(false);
     }
 
     private void _disolver_onMaterialized()
     {
-        _controller.enabled = true;
         AudioManager.instance.PlaySound(Sound.Name.PlayerSpawned);
+        alive = true;
+        _trail.gameObject.SetActive(true);
+      
     }
 
     private void _disolver_onDissolved()
@@ -104,6 +107,7 @@ public class Player : MonoBehaviour
     }
 
     private float debugMarkTimer = 0;
+    private bool alive;
 
     // the Update loop contains a very simple example of moving the character around and controlling the animation
     void Update()
@@ -240,8 +244,9 @@ public class Player : MonoBehaviour
             _controller.ignoreOneWayPlatformsThisFrame = true;
         }
 
-        _controller.move(_velocity * Time.deltaTime);
-
+        if (alive) { 
+            _controller.move(_velocity * Time.deltaTime);
+        }
         // TODO: Make sure the sound manager completes a loop before playing again
         if (_controller.isGrounded && _velocity.magnitude > 0.01f)
         {
@@ -260,8 +265,9 @@ public class Player : MonoBehaviour
 
     internal void Damage()
     {
+        alive = false;
+        _trail.gameObject.SetActive(false);
         AudioManager.instance.PlaySound(Sound.Name.PlayerDamaged);
-        _controller.enabled = false;
         _disolver.Out();
     }
 

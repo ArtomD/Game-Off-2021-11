@@ -5225,6 +5225,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8177709215864683766, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
+      propertyPath: dissolveSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177709215864683766, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
+      propertyPath: materialColor.b
+      value: 0.57434916
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177709215864683766, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
+      propertyPath: materialColor.g
+      value: 0.57434916
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177709215864683766, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
+      propertyPath: materialColor.r
+      value: 0.57434916
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177709215864683766, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
+      propertyPath: materializeSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177709215864683766, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
+      propertyPath: curDissolveAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8177709215864683774, guid: 8a0db303c87c2124490beeb244f9ed2b, type: 3}
       propertyPath: m_Name
       value: Player
