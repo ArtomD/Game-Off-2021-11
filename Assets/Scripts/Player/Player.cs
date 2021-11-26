@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Prime31;
-
+using System;
 
 public class Player : MonoBehaviour
 {
+
+
     [Header("Physics Settings")]
     [SerializeField] private float gravity = -25f;
     [SerializeField] private float runSpeed = 8f;
@@ -14,6 +16,9 @@ public class Player : MonoBehaviour
     [Header("Jump & Dash Settings")]
     [SerializeField] private float jumpHeight = 3f;
     [SerializeField] private float maxDashTime = 0.25f;
+
+
+
     [SerializeField] private float maxDashSpeed = 20f;
     [SerializeField] private float maxJumps = 2f;
 
@@ -27,20 +32,43 @@ public class Player : MonoBehaviour
     private float _dashTimeRemaining = 0f;
     private Vector2 impulseForce = new Vector2(0, 0);
 
-    private Disolver disolver;
+    private Disolver _disolver;
 
     void Awake()
     {
+        
         _animator = GetComponent<Animator>();
+        _disolver = GetComponent<Disolver>();
         _controller = GetComponent<CharacterController2D>();
+
 
         // listen to some events for illustration purposes
         _controller.onControllerCollidedEvent += onControllerCollider;
         _controller.onTriggerEnterEvent += onTriggerEnterEvent;
         _controller.onTriggerExitEvent += onTriggerExitEvent;
-        disolver = GetComponent<Disolver>();
-        disolver.Initialize();
-        disolver.In();
+
+        // Listen to disolver events
+        _disolver.onDissolved += _disolver_onDissolved;
+        _disolver.onMaterialized += _disolver_onMaterialized;
+
+    }
+
+
+    public void Start()
+    {
+        _disolver.In();
+        _controller.enabled = false;
+    }
+
+    private void _disolver_onMaterialized()
+    {
+        _controller.enabled = true;
+        AudioManager.instance.PlaySound(Sound.Name.PlayerSpawned);
+    }
+
+    private void _disolver_onDissolved()
+    {
+        AudioManager.instance.PlaySound(Sound.Name.PlayerDied);
     }
 
 
@@ -58,6 +86,7 @@ public class Player : MonoBehaviour
 
     void onTriggerEnterEvent(Collider2D col)
     {
+        AudioManager.instance.PlaySound(Sound.Name.PlayerDashAvailable);
         _curJumps = 0;
     }
 
@@ -130,6 +159,7 @@ public class Player : MonoBehaviour
         
         if (tryingToDash && allowedToDash )
         {
+            AudioManager.instance.PlaySound(Sound.Name.PlayerDash);
             // By default dash forward w/out keys
             if (vertical == 0 && horizontal == 0)
             {
@@ -163,6 +193,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (  _controller.isGrounded) {
+                AudioManager.instance.PlaySound(Sound.Name.PlayerJump);
                 _velocity.y = Mathf.Sqrt(2f * jumpHeight * -gravity  * inAirDamping);
                 _animator.Play(Animator.StringToHash("Jump"));
             } else
@@ -192,11 +223,7 @@ public class Player : MonoBehaviour
         if (!_isDashing)
         {
             targetVelocity.y = _velocity.y + gravity;
-
-        
             targetVelocity.x = Mathf.MoveTowards(_velocity.x, horizontal * runSpeed, -1*gravity);
-
-
         }
 
         //targetVelocity = Vector2.ClampMagnitude(targetVelocity, runSpeed);
@@ -209,10 +236,17 @@ public class Player : MonoBehaviour
         if (_controller.isGrounded && vertical <= -0.5f )
         {
             _velocity.y = -runSpeed;
+
             _controller.ignoreOneWayPlatformsThisFrame = true;
         }
 
         _controller.move(_velocity * Time.deltaTime);
+
+        // TODO: Make sure the sound manager completes a loop before playing again
+        if (_controller.isGrounded && _velocity.magnitude > 0.01f)
+        {
+            AudioManager.instance.PlaySound(Sound.Name.PlayerWalk);
+        }
 
         // grab our current _velocity to use as a base for all calculations
         _velocity = _controller.velocity;               
@@ -223,10 +257,12 @@ public class Player : MonoBehaviour
         return _isDashing;
     }
 
-    public void HitObstacle()
-    {        
-        disolver.Out();
-        FindObjectOfType<LevelController>().Die();
+
+    internal void Damage()
+    {
+        AudioManager.instance.PlaySound(Sound.Name.PlayerDamaged);
+        _controller.enabled = false;
+        _disolver.Out();
     }
 
 }

@@ -67,11 +67,13 @@ public class LevelController : MonoBehaviour
 
     public void Win()
     {
+        AudioManager.instance.PlaySound(Sound.Name.LevelComplete);
         won = true;
-        StartCoroutine(EndIEnum(true));        
+        StartCoroutine(EndIEnum(true));
+     
     }
 
-    public void Die()
+    public void Lose()
     {
         won = true;
         StartCoroutine(EndIEnum(false));
@@ -84,10 +86,14 @@ public class LevelController : MonoBehaviour
         yield return new WaitForSeconds(1);
         FindObjectOfType<Player>().gameObject.SetActive(false);          
         yield return new WaitForSeconds(0.1f);
-        if (win)
+        if (win) { 
+
             winScreen.SetActive(true);
+        }
         else
+        {
             SceneLoader.RestartLevel();
+        }
         //SceneLoader.LoadNextLevel();
     }
 

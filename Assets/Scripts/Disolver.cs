@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class Disolver : MonoBehaviour
 {
-    
+
+    public event Action onMaterialized;
+    public event Action onDissolved;
+
+
     public float solveSpeed = 1f;
     [ColorUsageAttribute(true, true, 0f, 8f, 0.125f, 3f)]
-    public Color solveColor;
+    public Color materialColor;
 
     public float desolveSpeed = 1f;
     [ColorUsageAttribute(true, true, 0f, 8f, 0.125f, 3f)]
@@ -15,7 +20,7 @@ public class Disolver : MonoBehaviour
     public bool startVisible = false;
     public bool solveOnLoad = false;
 
-    private Material materail;
+    private Material material;
     public float disolveAmount = 1f;
     private IEnumerator coroutine;
     private float effectStepDelay = 0.05f;
@@ -36,12 +41,12 @@ public class Disolver : MonoBehaviour
 
     public void Initialize()
     {
-        materail = gameObject.GetComponent<Renderer>().material;
+        material = gameObject.GetComponent<Renderer>().material;
         if (startVisible)
             disolveAmount = maxDesolve;        
         else        
-            disolveAmount = minDesolve;        
-        UpdateMaterial();
+            disolveAmount = minDesolve;
+        material.SetFloat("_DisolveAmount", disolveAmount);
     }
 
     // Update is called once per frame
@@ -50,28 +55,40 @@ public class Disolver : MonoBehaviour
         
     }
 
-    public void In(){ UpdateColor(solveColor);  StartCoroutine(Process(solveSpeed, maxDesolve)); }
+    public void In(){ 
+        material.SetColor("_DisolveColor", materialColor);
+        StartCoroutine(Process(solveSpeed, maxDesolve)); 
+    }
 
-    public void Out() { UpdateColor(desolveColor);  StartCoroutine(Process(desolveSpeed, minDesolve));}
+    public void Out() {
+        material.SetColor("_DisolveColor", desolveColor);
+        StartCoroutine(Process(desolveSpeed, minDesolve));
+    }
 
-    private void UpdateMaterial() { materail.SetFloat("_DisolveAmount", disolveAmount); }
-    private void UpdateColor(Color color) { materail.SetColor("_DisolveColor", color); }
+    private void UpdateColor(Color color) {
+        
+    }
 
     protected IEnumerator Process(float speed, float target)
-    {        
-        while(target != disolveAmount)
-        {     
-            if (target > disolveAmount)
-            {
-                disolveAmount = Mathf.Min(target, disolveAmount + speed);
-            }
-            else
-            {
-                disolveAmount = Mathf.Max(target, disolveAmount - speed);
-            }
-            UpdateMaterial();
+    {
+        while (target != disolveAmount)
+        {
+            Mathf.MoveTowards(disolveAmount, target, speed);
+            material.SetFloat("_DisolveAmount", disolveAmount);
             yield return new WaitForSeconds(effectStepDelay);
-        }       
+        }
+
+        if (target == maxDesolve && onMaterialized != null)
+        {
+            onMaterialized();
+        }
+
+        if (target == minDesolve && onDissolved != null)
+        {
+            onDissolved();
+        }
+
+
         yield return null;
     }
 

@@ -29,16 +29,19 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        foreach (Sound sound in sounds)        
+        foreach (Sound sound in sounds) { 
             sound.Set(gameObject.AddComponent<AudioSource>());
+        }
+
         masterVolume = AudioListener.volume;
-        PlaySound(Sound.Name.Soundtrack.ToString());
+        PlaySound(Sound.Name.Soundtrack);
     }
 
 
-    public void PlaySound(string id)
+    public void PlaySound(Sound.Name name)
     {
-        Array.Find(sounds, sound => sound.name.ToString() == id).Play();         
+        Sound sound = Array.Find(sounds, sound => sound.name == name);
+        sound?.Play();         
     }
 
     public void UpdateVolue(float volume)
