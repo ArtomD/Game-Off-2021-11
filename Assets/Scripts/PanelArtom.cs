@@ -151,16 +151,19 @@ public class PanelArtom : MonoBehaviour
         Debug.Log("TRYING TO ROTATE: " + ID + " " + timer + " " + Time.time);
         if (timer + rotateCD < Time.time)
         {
+
             launchPlayer(player, isUp, 35);
             this.clockwise = clockwise;
             rotatePanel = true;
             timer = Time.time;
+
         }        
     }
 
     public void launchPlayer(Player player, bool isUp, float force)
     {
         Debug.Log("LAUNCHING : " + isUp);
+
         if (isUp)
         {
             player.ApplyForce(transform.up* force);
@@ -306,7 +309,10 @@ public class PanelArtom : MonoBehaviour
             {
                 completed = false;
             }
-        }        
+        }
+
+
+   
     }
 
     public bool isCompleted()
@@ -318,11 +324,13 @@ public class PanelArtom : MonoBehaviour
     {
         if (state)
         {
+            AudioManager.instance.PlaySound(Sound.Name.PanelSet);
             goalSprite.color = completeColor;
             completedCollider.SetActive(true);
         }
         else
         {
+            AudioManager.instance.PlaySound(Sound.Name.PanelUnset);
             goalSprite.color = targetColor;
             completedCollider.SetActive(false);
         }

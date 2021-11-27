@@ -33,6 +33,8 @@ public class PanelMoveHitArea : MonoBehaviour
         Debug.Log(player.playerIsDashing());
         if (collision.gameObject.tag == "Player" && player.playerIsDashing())
         {
+            AudioManager.instance.PlaySound(Sound.Name.PanelCollide);
+
             int nextAnchor = parentPanel.chooseAnchor(isUp);
             Debug.Log(nextAnchor);
             parentPanel.launchPlayer(player, isUp, 15);

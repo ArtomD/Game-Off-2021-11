@@ -177,6 +177,8 @@ public class CharacterController2D : MonoBehaviour
 	bool _isGoingUpSlope = false;
 
 
+	
+
 	#region Monobehaviour
 
 	void Awake()

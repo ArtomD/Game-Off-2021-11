@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Hazard : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,10 @@ public class Obstacle : MonoBehaviour
     {        
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<Player>().HitObstacle();
+            Player player = collision.gameObject.GetComponent<Player>();
+            player.Damage();
+
+            
         }        
     }    
 }

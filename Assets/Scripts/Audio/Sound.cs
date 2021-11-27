@@ -9,8 +9,20 @@ public class Sound
 
     public enum Name
     {
-        PlayerHit,
-        Soundtrack
+        PlayerJump, // done
+        PlayerSpawned,// done
+        PlayerDied,// done
+        PlayerDamaged,// done
+        PlayerWalk,// done
+        PlayerDash,// done
+        PlayerDashAvailable,// done
+        PanelCollide, // done
+        PanelTurn,  // NOT SURE, how is it different than collide?
+        PanelSlide, //NOT SURE, how is it different than collide?
+        PanelSet,  // Done
+        PanelUnset,// Done
+        LevelComplete, // Done
+        Soundtrack// done
     }
 
     public AudioClip clip;
