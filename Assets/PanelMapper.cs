@@ -112,6 +112,11 @@ public class PanelMapper : MonoBehaviour
         }
         panel.Glow();
         panel?.targetPanel?.panelOnState(true);
+        foreach(GameObject connection in panel.lineMain)
+        {
+            connection.GetComponent<BoxCollider2D>().enabled = true;
+        }
+        panel.lineJoint.GetComponent<CircleCollider2D>().enabled = true;
     }
 
     private void Deactivate(PanelConnection panel)
@@ -123,6 +128,11 @@ public class PanelMapper : MonoBehaviour
 
         panel.Dim();
         panel?.targetPanel?.panelOnState(false);
+        foreach (GameObject connection in panel.lineMain)
+        {
+            connection.GetComponent<BoxCollider2D>().enabled = false;
+        }
+        panel.lineJoint.GetComponent<CircleCollider2D>().enabled = false;
     }
 
 }
