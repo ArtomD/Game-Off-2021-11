@@ -6,7 +6,6 @@ public class Sound
     public Name name;
 
     public bool loop;
-
     public enum Name
     {
         PlayerJump, // done
@@ -45,7 +44,31 @@ public class Sound
     }
 
     public void Play()
-    {        
+    {
         source.Play();
+
+    }
+
+    public void Pause()
+    {
+        if (source.isPlaying)
+        {
+
+            source.Pause();
+        }
+
+    }
+
+    public void UnPause()
+    {
+        if (!source.isPlaying)
+        {
+            Play();
+        } else
+        {
+            source.UnPause();
+        }
+        
+
     }
 }

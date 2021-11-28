@@ -20,7 +20,8 @@ public class Player : MonoBehaviour
 
 
     [SerializeField] private float maxDashSpeed = 20f;
-    [SerializeField] private float maxJumps = 2f;
+    [SerializeField] private int maxJumps = 2;
+    [SerializeField] private bool dropThroughOneWayPlatform = false;
 
     private CharacterController2D _controller;
     private Animator _animator;
@@ -89,7 +90,9 @@ public class Player : MonoBehaviour
 
     void onTriggerEnterEvent(Collider2D col)
     {
-        AudioManager.instance.PlaySound(Sound.Name.PlayerDashAvailable);
+        if (_curJumps  > 0) { 
+            AudioManager.instance.PlaySound(Sound.Name.PlayerDashAvailable);
+        }
         _curJumps = 0;
     }
 
@@ -237,7 +240,7 @@ public class Player : MonoBehaviour
 
         // if holding down bump up our movement amount and turn off one way platform detection for a frame.
         // this lets us jump down through one way platforms
-        if (_controller.isGrounded && vertical <= -0.5f )
+        if (dropThroughOneWayPlatform && _controller.isGrounded && vertical <= -0.5f )
         {
             _velocity.y = -runSpeed;
 
@@ -248,9 +251,12 @@ public class Player : MonoBehaviour
             _controller.move(_velocity * Time.deltaTime);
         }
         // TODO: Make sure the sound manager completes a loop before playing again
-        if (_controller.isGrounded && _velocity.magnitude > 0.01f)
+        if (_controller.isGrounded && _controller.velocity.sqrMagnitude >= 0.2f)
         {
-            AudioManager.instance.PlaySound(Sound.Name.PlayerWalk);
+            AudioManager.instance.UnPause(Sound.Name.PlayerWalk);
+        } else
+        {
+            AudioManager.instance.Pause(Sound.Name.PlayerWalk);
         }
 
         // grab our current _velocity to use as a base for all calculations

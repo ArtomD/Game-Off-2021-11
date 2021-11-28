@@ -320,17 +320,21 @@ public class PanelArtom : MonoBehaviour
         return completed;
     }
 
+
     public void panelOnState(bool state)
     {
+        if (state == completedCollider.active) return;
+
+
         if (state)
         {
-            AudioManager.instance.PlaySound(Sound.Name.PanelSet);
+            AudioManager.instance.UnPause(Sound.Name.PanelSet);
             goalSprite.color = completeColor;
             completedCollider.SetActive(true);
         }
         else
         {
-            AudioManager.instance.PlaySound(Sound.Name.PanelUnset);
+            AudioManager.instance.UnPause(Sound.Name.PanelUnset);
             goalSprite.color = targetColor;
             completedCollider.SetActive(false);
         }

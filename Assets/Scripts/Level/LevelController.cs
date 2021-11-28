@@ -8,22 +8,28 @@ using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour
 {
-    
+
 
     public GameObject levelText;
     public GameObject levelTime;
     public GameObject levelTimeCompleted;
     public float restartHoldDuration = 2;
     public Slider slider;
-    private DateTime restartTimer;
-    private bool keyDown = false;    
+    private DateTime restartPressedAt;
     public GameObject winScreen;
 
     public string levelName;
 
     private DateTime time;
     private float elapsedTime;
-    private bool won = false;
+
+    private enum LevelState  {
+        Won,
+        Lost,
+        InProgres,
+    }
+
+    private LevelState levelState = LevelState.InProgres;
 
 
     // Start is called before the first frame update
@@ -37,45 +43,60 @@ public class LevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+  
         
-        if (!won)
+        if (levelState != LevelState.Won) { 
             elapsedTime = (float)(DateTime.UtcNow - time).TotalSeconds;
+        }
 
+        // TODO: Try and void getComponent in an update, it's really slow.
         levelTime.GetComponent<TextMeshProUGUI>().text = String.Format("{0:F2}", (Mathf.Round(elapsedTime * 100.0f ) / 100.0f));
         levelTimeCompleted.GetComponent<TextMeshProUGUI>().text = "total time " + Mathf.Round(elapsedTime * 100.0f) / 100.0f + " seconds";
 
         if (Input.GetKeyDown(KeyCode.R))
-            keyDown = true;
-
-        if (Input.GetKeyUp(KeyCode.R))
-            keyDown = false;
-
-        if (!keyDown)
-            restartTimer = DateTime.UtcNow;
+        {
+            restartPressedAt = DateTime.UtcNow;
+        }
 
         
-
-              
-
-        slider.value = (float)(DateTime.UtcNow - restartTimer).TotalSeconds / restartHoldDuration;
-
-        if ((DateTime.UtcNow - restartTimer).TotalSeconds > restartHoldDuration && keyDown)
+        slider.value = (float)(DateTime.UtcNow - restartPressedAt).TotalSeconds / restartHoldDuration;
+        
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneLoader.RestartLevel();
+            double timeSinceSliderPressed = (DateTime.UtcNow - restartPressedAt).TotalSeconds;
+            if (timeSinceSliderPressed >= restartHoldDuration)
+            {
+                SceneLoader.RestartLevel();
+            }
         }
+  
     }
 
     public void Win()
     {
+        if (levelState == LevelState.Won)
+        {
+            Debug.LogWarning("You are calling Win() after the level is already complete. Please Stop!");
+            return;
+        }
+
+        this.levelState = LevelState.Won;
+
         AudioManager.instance.PlaySound(Sound.Name.LevelComplete);
-        won = true;
         StartCoroutine(EndIEnum(true));
      
     }
 
     public void Lose()
     {
-        won = true;
+        if (levelState == LevelState.Lost)
+        {
+            Debug.LogWarning("You are calling Lose() after the level is already complete. Please Stop!");
+            return;
+        }
+        
+        this.levelState = LevelState.Lost;
+        AudioManager.instance.PlaySound(Sound.Name.PlayerDied);
         StartCoroutine(EndIEnum(false));
     }
 
