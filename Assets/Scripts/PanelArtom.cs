@@ -48,9 +48,11 @@ public class PanelArtom : MonoBehaviour
     private float delayLength;
     private bool clockwise;
     private bool rotatePanel;
+    [SerializeField]
+    public Material completeMaterial;
+    [SerializeField]
+    public Material targetMaterial;
 
-    public Color completeColor = new Color(191 / 255f, 168 / 255f, 39 / 255f, 0.8f);
-    public Color targetColor = new Color(191 / 255f, 168 / 255f, 39 / 255f, 0.8f);
     [SerializeField]
     private GameObject completedCollider;
     private float avalue;
@@ -121,14 +123,14 @@ public class PanelArtom : MonoBehaviour
                 }
             }
         }
-        renderer.color = new Color(color[0]/255, color[1] / 255, color[2] / 255);
+        //renderer.color = new Color(color[0]/255, color[1] / 255, color[2] / 255);
         if (avalue > 0.25f)
         {
             avalue -= 0.01f;
         }
         for (int i = 0; i<panelAreas.Length;i++)
         {
-            panelAreas[i].color = new Color(color[0] / 255, color[1] / 255, color[2] / 255, avalue);
+            //panelAreas[i].color = new Color(color[0] / 255, color[1] / 255, color[2] / 255, avalue);
         }
         if (rotatePanel && timer + delayLength < Time.time)
         {
@@ -325,13 +327,13 @@ public class PanelArtom : MonoBehaviour
         if (state)
         {
             AudioManager.instance.PlaySound(Sound.Name.PanelSet);
-            goalSprite.color = completeColor;
+            goalSprite.material = completeMaterial;
             completedCollider.SetActive(true);
         }
         else
         {
             AudioManager.instance.PlaySound(Sound.Name.PanelUnset);
-            goalSprite.color = targetColor;
+            goalSprite.material = targetMaterial;
             completedCollider.SetActive(false);
         }
     }

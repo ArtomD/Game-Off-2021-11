@@ -2971,6 +2971,54 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 427885266759036220, guid: 560f4cc96af11354eb3478852eb6786a, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 427885266759036220, guid: 560f4cc96af11354eb3478852eb6786a, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 427885266759036220, guid: 560f4cc96af11354eb3478852eb6786a, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 427885266942455386, guid: 560f4cc96af11354eb3478852eb6786a, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 427885266942455386, guid: 560f4cc96af11354eb3478852eb6786a, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 427885266942455386, guid: 560f4cc96af11354eb3478852eb6786a, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 427885267635090706, guid: 560f4cc96af11354eb3478852eb6786a, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 427885267635090706, guid: 560f4cc96af11354eb3478852eb6786a, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 427885267635090706, guid: 560f4cc96af11354eb3478852eb6786a, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 427885268397845457, guid: 560f4cc96af11354eb3478852eb6786a, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 427885268397845457, guid: 560f4cc96af11354eb3478852eb6786a, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 427885268397845457, guid: 560f4cc96af11354eb3478852eb6786a, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 600989768830439562, guid: 560f4cc96af11354eb3478852eb6786a, type: 3}
       propertyPath: m_Name
       value: Rotate45
