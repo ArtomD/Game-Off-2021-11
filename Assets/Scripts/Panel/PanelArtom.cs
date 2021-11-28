@@ -59,6 +59,8 @@ public class PanelArtom : MonoBehaviour
 
     public bool completed;
     private bool cycleColors;
+
+    private bool nextJumpHigh;
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
@@ -97,6 +99,7 @@ public class PanelArtom : MonoBehaviour
             }
         }
         CheckCompletion();
+        nextJumpHigh = false;
     }
 
     // Update is called once per frame
@@ -167,6 +170,12 @@ public class PanelArtom : MonoBehaviour
     {
         Debug.Log("LAUNCHING : " + isUp);
 
+        if (nextJumpHigh)
+        {
+            force *= 3;
+            nextJumpHigh = false;
+        }
+
         if (isUp)
         {
             player.ApplyForce(transform.up * force);
@@ -176,6 +185,11 @@ public class PanelArtom : MonoBehaviour
             player.ApplyForce(-transform.up * force);
         }
 
+    }
+
+    public void setNextJumpHigh()
+    {
+        this.nextJumpHigh = true;
     }
 
     public int getCurrentAnchor()

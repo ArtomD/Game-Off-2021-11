@@ -16,6 +16,7 @@ public class Sound
         PlayerDash,// done
         PlayerDashAvailable,// done
         PanelCollide, // done
+        PanelBounce, // done
         PanelTurn,  // NOT SURE, how is it different than collide?
         PanelSlide, //NOT SURE, how is it different than collide?
         PanelSet,  // Done
