@@ -48,9 +48,11 @@ public class PanelArtom : MonoBehaviour
     private float delayLength;
     private bool clockwise;
     private bool rotatePanel;
+    [SerializeField]
+    public Material completeMaterial;
+    [SerializeField]
+    public Material targetMaterial;
 
-    public Color completeColor = new Color(191 / 255f, 168 / 255f, 39 / 255f, 0.8f);
-    public Color targetColor = new Color(191 / 255f, 168 / 255f, 39 / 255f, 0.8f);
     [SerializeField]
     private GameObject completedCollider;
     private float avalue;
@@ -100,7 +102,8 @@ public class PanelArtom : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (cycleColors) { 
+        if (cycleColors)
+        {
             for (int i = 0; i < color.Length; i++)
             {
                 if (colorDirection[i])
@@ -121,14 +124,14 @@ public class PanelArtom : MonoBehaviour
                 }
             }
         }
-        renderer.color = new Color(color[0]/255, color[1] / 255, color[2] / 255);
+        //renderer.color = new Color(color[0]/255, color[1] / 255, color[2] / 255);
         if (avalue > 0.25f)
         {
             avalue -= 0.01f;
         }
-        for (int i = 0; i<panelAreas.Length;i++)
+        for (int i = 0; i < panelAreas.Length; i++)
         {
-            panelAreas[i].color = new Color(color[0] / 255, color[1] / 255, color[2] / 255, avalue);
+            //panelAreas[i].color = new Color(color[0] / 255, color[1] / 255, color[2] / 255, avalue);
         }
         if (rotatePanel && timer + delayLength < Time.time)
         {
@@ -157,7 +160,7 @@ public class PanelArtom : MonoBehaviour
             rotatePanel = true;
             timer = Time.time;
 
-        }        
+        }
     }
 
     public void launchPlayer(Player player, bool isUp, float force)
@@ -166,13 +169,13 @@ public class PanelArtom : MonoBehaviour
 
         if (isUp)
         {
-            player.ApplyForce(transform.up* force);
+            player.ApplyForce(transform.up * force);
         }
         else
         {
             player.ApplyForce(-transform.up * force);
         }
-        
+
     }
 
     public int getCurrentAnchor()
@@ -226,16 +229,17 @@ public class PanelArtom : MonoBehaviour
             targetVector = -transform.up;
         }
         Debug.Log("TARGET VECTOR: " + targetVector);
-        if(!(nextAnchorVector().x==0 && nextAnchorVector().y==0) && !(prevAnchorVector().x == 0 && prevAnchorVector().y == 0))
+        if (!(nextAnchorVector().x == 0 && nextAnchorVector().y == 0) && !(prevAnchorVector().x == 0 && prevAnchorVector().y == 0))
         {
             return Vector2.Angle(nextAnchorVector() - targetVector, targetVector) < Vector2.Angle(prevAnchorVector() - targetVector, targetVector) ? -1 : 1;
         }
-        else if(nextAnchorVector().x == 0 && nextAnchorVector().y == 0)
+        else if (nextAnchorVector().x == 0 && nextAnchorVector().y == 0)
         {
             Debug.Log(Vector2.Angle(prevAnchorVector() - targetVector, targetVector));
             float angle = Vector2.Angle(prevAnchorVector() - targetVector, targetVector);
             return (angle > 90) ? -1 : 0;
-        }else if (prevAnchorVector().x == 0 && prevAnchorVector().y == 0)
+        }
+        else if (prevAnchorVector().x == 0 && prevAnchorVector().y == 0)
         {
             Debug.Log(Vector2.Angle(nextAnchorVector() - targetVector, targetVector));
             float angle = Vector2.Angle(nextAnchorVector() - targetVector, targetVector);
@@ -248,7 +252,7 @@ public class PanelArtom : MonoBehaviour
     {
         if (forward)
         {
-            if (anchorIndex < moveAnchors.Length-1)
+            if (anchorIndex < moveAnchors.Length - 1)
             {
                 anchorIndex++;
             }
@@ -270,7 +274,7 @@ public class PanelArtom : MonoBehaviour
             prevAnchor = -1;
         }
 
-        if (anchorIndex < moveAnchors.Length-1)
+        if (anchorIndex < moveAnchors.Length - 1)
         {
             nextAnchor = anchorIndex + 1;
         }
@@ -298,21 +302,21 @@ public class PanelArtom : MonoBehaviour
         completed = true;
         if (isRotate)
         {
-            if (Mathf.RoundToInt(Mathf.Abs(transform.eulerAngles.z % (360/timesIn360))) != goalAngle)
+            if (Mathf.RoundToInt(Mathf.Abs(transform.eulerAngles.z % (360 / timesIn360))) != goalAngle)
             {
-                completed = false;                
+                completed = false;
             }
         }
         if (isSlide)
         {
-            if(anchorIndex != goalAnchor)
+            if (anchorIndex != goalAnchor)
             {
                 completed = false;
             }
         }
 
 
-   
+
     }
 
     public bool isCompleted()
