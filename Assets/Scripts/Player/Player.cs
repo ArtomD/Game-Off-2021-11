@@ -269,6 +269,7 @@ public class Player : MonoBehaviour
         _trail.gameObject.SetActive(false);
         AudioManager.instance.PlaySound(Sound.Name.PlayerDamaged);
         _disolver.Out();
+        FindObjectOfType<LevelController>().Lose();
     }
 
 }

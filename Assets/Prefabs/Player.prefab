@@ -248,13 +248,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cccccd081b3fc3344b5229ffee060f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solveSpeed: 0.02
-  solveColor: {r: 3.7992175, g: 3.8597722, b: 27.773584, a: 1}
-  desolveSpeed: 0.01
-  desolveColor: {r: 23.968628, g: 1.882353, b: 10.415687, a: 1}
-  startVisible: 0
-  solveOnLoad: 1
-  disolveAmount: 1
+  materializeSpeed: 0.1
+  materialColor: {r: 0.57434916, g: 0.57434916, b: 0.57434916, a: 0}
+  dissolveSpeed: 0.1
+  dissolveColor: {r: 0, g: 0, b: 0, a: 0}
+  curDissolveAmount: 0
 --- !u!60 &6258906647291755202
 PolygonCollider2D:
   m_ObjectHideFlags: 0

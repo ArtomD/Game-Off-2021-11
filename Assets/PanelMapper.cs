@@ -116,7 +116,8 @@ public class PanelMapper : MonoBehaviour
         {
             connection.GetComponent<BoxCollider2D>().enabled = true;
         }
-        panel.lineJoint.GetComponent<CircleCollider2D>().enabled = true;
+        if (panel.lineJoint != null)
+            panel.lineJoint.GetComponent<CircleCollider2D>().enabled = true;
     }
 
     private void Deactivate(PanelConnection panel)
@@ -132,7 +133,8 @@ public class PanelMapper : MonoBehaviour
         {
             connection.GetComponent<BoxCollider2D>().enabled = false;
         }
-        panel.lineJoint.GetComponent<CircleCollider2D>().enabled = false;
+        if(panel.lineJoint != null)
+            panel.lineJoint.GetComponent<CircleCollider2D>().enabled = false;
     }
 
 }
