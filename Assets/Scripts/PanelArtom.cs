@@ -333,13 +333,13 @@ public class PanelArtom : MonoBehaviour
         if (state)
         {
             AudioManager.instance.UnPause(Sound.Name.PanelSet);
-            goalSprite.color = completeColor;
+            goalSprite.material = completeMaterial;
             completedCollider.SetActive(true);
         }
         else
         {
             AudioManager.instance.UnPause(Sound.Name.PanelUnset);
-            goalSprite.color = targetColor;
+            goalSprite.material = targetMaterial;
             completedCollider.SetActive(false);
         }
     }
