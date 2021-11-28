@@ -63,15 +63,14 @@ public class PanelMapper : MonoBehaviour
 
         if (!disconnected)
         {
-            if(end.targetPanel == null)
+            if(end.targetPanel == null || end.targetPanel.isCompleted())
             {
+                // TODO: activate iscalled in way too many places
                 Activate(end);
-                Win();
-            }
-            else if(end.targetPanel.isCompleted())
-            {
-                Activate(end);
-                Win();
+
+                // TODO: calls to find should be done on awake
+                // TODO: also in general this should be avoided, and you should fire an event. This gets called on repeat in every loop.
+                FindObjectOfType<LevelController>().Win(); 
             }            
         }
         else
@@ -86,11 +85,6 @@ public class PanelMapper : MonoBehaviour
         return Vector3.SignedAngle(new Vector3(0, 1, 0), end - start, Vector3.forward);
     }
 
-    private void Win()
-    {
-        Debug.Log("YOU WIN!");
-        FindObjectOfType<LevelController>().Win();
-    }
 
     private void Activate(PanelConnection panel)
     {        

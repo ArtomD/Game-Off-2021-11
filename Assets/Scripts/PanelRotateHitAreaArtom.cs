@@ -27,7 +27,7 @@ public class PanelRotateHitAreaArtom : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("DASHING: " + collision.gameObject.GetComponent<Player>().playerIsDashing());
+        //Debug.Log("DASHING: " + collision.gameObject.GetComponent<Player>().playerIsDashing());
         Player player = collision.gameObject.GetComponent<Player>();
         if (player == null)
         {
