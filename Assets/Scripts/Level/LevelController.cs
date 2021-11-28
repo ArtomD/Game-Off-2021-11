@@ -96,7 +96,6 @@ public class LevelController : MonoBehaviour
         }
         
         this.levelState = LevelState.Lost;
-        AudioManager.instance.PlaySound(Sound.Name.PlayerDied);
         StartCoroutine(EndIEnum(false));
     }
 

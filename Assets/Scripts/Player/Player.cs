@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
     private void _disolver_onDissolved()
     {
         AudioManager.instance.PlaySound(Sound.Name.PlayerDied);
+        AudioManager.instance.Pause(Sound.Name.PlayerWalk);
     }
 
 
@@ -253,6 +254,7 @@ public class Player : MonoBehaviour
         // TODO: Make sure the sound manager completes a loop before playing again
         if (_controller.isGrounded && _controller.velocity.sqrMagnitude >= 0.2f)
         {
+            
             AudioManager.instance.UnPause(Sound.Name.PlayerWalk);
         } else
         {
