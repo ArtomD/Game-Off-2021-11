@@ -26,10 +26,10 @@ public class LevelController : MonoBehaviour
     private enum LevelState  {
         Won,
         Lost,
-        InProgres,
+        InProgress,
     }
 
-    private LevelState levelState = LevelState.InProgres;
+    private LevelState levelState = LevelState.InProgress;
 
 
     // Start is called before the first frame update
@@ -45,9 +45,11 @@ public class LevelController : MonoBehaviour
     {
   
         
-        if (levelState != LevelState.Won) { 
-            elapsedTime = (float)(DateTime.UtcNow - time).TotalSeconds;
+        if (levelState != LevelState.InProgress) {
+            return;
         }
+
+        elapsedTime = (float)(DateTime.UtcNow - time).TotalSeconds;
 
         // TODO: Try and void getComponent in an update, it's really slow.
         levelTime.GetComponent<TextMeshProUGUI>().text = String.Format("{0:F2}", (Mathf.Round(elapsedTime * 100.0f ) / 100.0f));
@@ -61,7 +63,7 @@ public class LevelController : MonoBehaviour
         
         slider.value = (float)(DateTime.UtcNow - restartPressedAt).TotalSeconds / restartHoldDuration;
         
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKey(KeyCode.R))
         {
             double timeSinceSliderPressed = (DateTime.UtcNow - restartPressedAt).TotalSeconds;
             if (timeSinceSliderPressed >= restartHoldDuration)

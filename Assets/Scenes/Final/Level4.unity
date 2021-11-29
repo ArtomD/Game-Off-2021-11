@@ -9799,7 +9799,7 @@ MonoBehaviour:
     lineJoint: {fileID: 0}
     lineMain: []
     effect: {fileID: 0}
-  visualTemplate: {fileID: 8957001453422681594, guid: 4725ef8b961a3a54ca1f59a4835f973c, type: 3}
+  visualTemplate: {fileID: 1892056202694066568, guid: cfcc12ace4edb8e478cf449bb87b539f, type: 3}
   glow: {fileID: 2100000, guid: 80b896e0a8d20b544bb9666f02c818ac, type: 2}
   dim: {fileID: 2100000, guid: c1592ca3736bb7c49b5530ac8a5f6ac3, type: 2}
 --- !u!4 &1367518049899565925
