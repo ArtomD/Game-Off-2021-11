@@ -52,10 +52,14 @@ public class UIAnimator : MonoBehaviour
         }
         for (int TMPFieldIndex = 0; TMPFieldIndex < TMPFields.Length; TMPFieldIndex++)
         {
-            lerpedColor.a = TMPFields[TMPFieldIndex].GetComponent<TMPro.TextMeshProUGUI>().fontSharedMaterial.GetColor(ShaderUtilities.ID_GlowColor).a;
-            TMPFields[TMPFieldIndex].GetComponent<TMPro.TextMeshProUGUI>().fontSharedMaterial.SetColor(ShaderUtilities.ID_GlowColor, lerpedColor);
-            lerpedColor.a = TMPFields[TMPFieldIndex].GetComponent<TMPro.TextMeshProUGUI>().color.a;
-            TMPFields[TMPFieldIndex].GetComponent<TMPro.TextMeshProUGUI>().color = lerpedColor;
+            if(TMPFields[TMPFieldIndex].GetComponent<TMPro.TextMeshProUGUI>() != null)
+            {
+                lerpedColor.a = TMPFields[TMPFieldIndex].GetComponent<TMPro.TextMeshProUGUI>().fontSharedMaterial.GetColor(ShaderUtilities.ID_GlowColor).a;
+                TMPFields[TMPFieldIndex].GetComponent<TMPro.TextMeshProUGUI>().fontSharedMaterial.SetColor(ShaderUtilities.ID_GlowColor, lerpedColor);
+                lerpedColor.a = TMPFields[TMPFieldIndex].GetComponent<TMPro.TextMeshProUGUI>().color.a;
+                TMPFields[TMPFieldIndex].GetComponent<TMPro.TextMeshProUGUI>().color = lerpedColor;
+            }
+            
 
         }
         for (int TMPNoneFieldIndex = 0; TMPNoneFieldIndex < TMPNonGlowFields.Length; TMPNoneFieldIndex++)

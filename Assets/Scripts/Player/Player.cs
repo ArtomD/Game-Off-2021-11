@@ -291,6 +291,7 @@ public class Player : MonoBehaviour
         else if(firstGrounding && chargeIndicatorOn)
         {
             chargeIndicator.SetActive(true);
+            dashTrail.Stop();
         }
 
     }
@@ -314,7 +315,7 @@ public class Player : MonoBehaviour
     public void hideIndicator()
     {
         chargeIndicatorOn = false;
-        chargeIndicator.SetActive(false);
+        chargeIndicator.SetActive(false);        
     }
 
 }
