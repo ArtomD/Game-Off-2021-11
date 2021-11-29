@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
     private bool firstGrounding = false;
     private bool chargeIndicatorOn = true;
 
+    public ParticleSystem dashTrail;
+
     void Awake()
     {
         
@@ -57,6 +59,7 @@ public class Player : MonoBehaviour
         _disolver.onDissolved += _disolver_onDissolved;
         _disolver.onMaterialized += _disolver_onMaterialized;
 
+        dashTrail.Stop();
     }
 
 
@@ -150,13 +153,22 @@ public class Player : MonoBehaviour
             if (transform.localScale.x < 0f)
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
+            dashTrail.startRotation3D = new Vector3(0, 0, 0);
+
             if (_controller.isGrounded)
                 _animator.Play(Animator.StringToHash("Run"));
+            
         }
         else if (horizontal < -0.5f)
         {
             if (transform.localScale.x > 0f)
+            {
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                dashTrail.startRotation3D = new Vector3(0, Mathf.PI, 0);
+            }
+                
+
+
 
             if (_controller.isGrounded)
                 _animator.Play(Animator.StringToHash("Run"));
@@ -181,6 +193,7 @@ public class Player : MonoBehaviour
             }
 
             _isDashing = true;
+            dashTrail.Play();
             _dashTimeRemaining = maxDashTime;
             _curJumps = _curJumps + 1;
 
@@ -198,6 +211,7 @@ public class Player : MonoBehaviour
             if (_dashTimeRemaining <= 0)
             {
                 _isDashing = false;
+                dashTrail.Stop();
                 _dashTimeRemaining = 0;
             }
         }
@@ -278,6 +292,7 @@ public class Player : MonoBehaviour
         {
             chargeIndicator.SetActive(true);
         }
+
     }
 
     public bool playerIsDashing()
