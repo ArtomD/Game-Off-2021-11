@@ -102,9 +102,8 @@ public class LevelController : MonoBehaviour
     }
 
     private IEnumerator EndIEnum(bool win)
-    {
-        Debug.Log(FindObjectOfType<Player>());
-        Debug.Log(FindObjectOfType<Player>().gameObject.GetComponent<Disolver>());
+    {                
+        FindObjectOfType<Player>().hideIndicator();
         FindObjectOfType<Player>().gameObject.GetComponent<Disolver>().Out();
         FindObjectOfType<Player>().gameObject.GetComponent<Collider2D>().isTrigger = false;
         yield return new WaitForSeconds(1);

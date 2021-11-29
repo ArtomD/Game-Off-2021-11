@@ -36,6 +36,10 @@ public class Player : MonoBehaviour
     private Disolver _disolver;
     private Transform _trail;
 
+    public GameObject chargeIndicator;
+    private bool firstGrounding = false;
+    private bool chargeIndicatorOn = true;
+
     void Awake()
     {
         
@@ -60,11 +64,12 @@ public class Player : MonoBehaviour
     {
         _disolver.In();
         _trail.gameObject.SetActive(false);
+        AudioManager.instance.PlaySound(Sound.Name.PlayerSpawned);
     }
 
     private void _disolver_onMaterialized()
     {
-        AudioManager.instance.PlaySound(Sound.Name.PlayerSpawned);
+        
         alive = true;
         _trail.gameObject.SetActive(true);
       
@@ -126,6 +131,7 @@ public class Player : MonoBehaviour
             _curJumps = 0;
             _isDashing = false;
             _velocity.y = 0;
+            firstGrounding = true;
         }
 
 
@@ -162,7 +168,7 @@ public class Player : MonoBehaviour
         }
 
         // Apply velocity based on the current dash input
-        bool tryingToDash = Input.GetKey(KeyCode.LeftShift);
+        bool tryingToDash = Input.GetKeyDown(KeyCode.LeftShift);
         bool allowedToDash = !_isDashing  &&  _curJumps < maxJumps;
         
         if (tryingToDash && allowedToDash )
@@ -262,7 +268,16 @@ public class Player : MonoBehaviour
         }
 
         // grab our current _velocity to use as a base for all calculations
-        _velocity = _controller.velocity;               
+        _velocity = _controller.velocity;         
+        
+        if(_curJumps == maxJumps)
+        {
+            chargeIndicator.SetActive(false);
+        }
+        else if(firstGrounding && chargeIndicatorOn)
+        {
+            chargeIndicator.SetActive(true);
+        }
     }
 
     public bool playerIsDashing()
@@ -274,10 +289,17 @@ public class Player : MonoBehaviour
     internal void Damage()
     {
         alive = false;
+        hideIndicator();
         _trail.gameObject.SetActive(false);
         AudioManager.instance.PlaySound(Sound.Name.PlayerDamaged);
         _disolver.Out();
         FindObjectOfType<LevelController>().Lose();
+    }
+
+    public void hideIndicator()
+    {
+        chargeIndicatorOn = false;
+        chargeIndicator.SetActive(false);
     }
 
 }
