@@ -36,8 +36,11 @@ public class Player : MonoBehaviour
     private Disolver _disolver;
     private Transform _trail;
 
-    public Color chargedColor;
-    public Color lowColor;
+    public GameObject chargeIndicator;
+    private bool firstGrounding = false;
+    private bool chargeIndicatorOn = true;
+
+    public ParticleSystem dashTrail;
 
     void Awake()
     {
@@ -56,6 +59,7 @@ public class Player : MonoBehaviour
         _disolver.onDissolved += _disolver_onDissolved;
         _disolver.onMaterialized += _disolver_onMaterialized;
 
+        dashTrail.Stop();
     }
 
 
@@ -130,6 +134,7 @@ public class Player : MonoBehaviour
             _curJumps = 0;
             _isDashing = false;
             _velocity.y = 0;
+            firstGrounding = true;
         }
 
 
@@ -148,13 +153,22 @@ public class Player : MonoBehaviour
             if (transform.localScale.x < 0f)
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
+            dashTrail.startRotation3D = new Vector3(0, 0, 0);
+
             if (_controller.isGrounded)
                 _animator.Play(Animator.StringToHash("Run"));
+            
         }
         else if (horizontal < -0.5f)
         {
             if (transform.localScale.x > 0f)
+            {
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                dashTrail.startRotation3D = new Vector3(0, Mathf.PI, 0);
+            }
+                
+
+
 
             if (_controller.isGrounded)
                 _animator.Play(Animator.StringToHash("Run"));
@@ -179,6 +193,7 @@ public class Player : MonoBehaviour
             }
 
             _isDashing = true;
+            dashTrail.Play();
             _dashTimeRemaining = maxDashTime;
             _curJumps = _curJumps + 1;
 
@@ -196,6 +211,7 @@ public class Player : MonoBehaviour
             if (_dashTimeRemaining <= 0)
             {
                 _isDashing = false;
+                dashTrail.Stop();
                 _dashTimeRemaining = 0;
             }
         }
@@ -270,12 +286,14 @@ public class Player : MonoBehaviour
         
         if(_curJumps == maxJumps)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = lowColor;
+            chargeIndicator.SetActive(false);
         }
-        else
+        else if(firstGrounding && chargeIndicatorOn)
         {
-            //gameObject.GetComponent<SpriteRenderer>().color = chargedColor;
+            chargeIndicator.SetActive(true);
+            dashTrail.Stop();
         }
+
     }
 
     public bool playerIsDashing()
@@ -287,10 +305,17 @@ public class Player : MonoBehaviour
     internal void Damage()
     {
         alive = false;
+        hideIndicator();
         _trail.gameObject.SetActive(false);
         AudioManager.instance.PlaySound(Sound.Name.PlayerDamaged);
         _disolver.Out();
         FindObjectOfType<LevelController>().Lose();
+    }
+
+    public void hideIndicator()
+    {
+        chargeIndicatorOn = false;
+        chargeIndicator.SetActive(false);        
     }
 
 }
