@@ -36,6 +36,9 @@ public class Player : MonoBehaviour
     private Disolver _disolver;
     private Transform _trail;
 
+    public Color chargedColor;
+    public Color lowColor;
+
     void Awake()
     {
         
@@ -262,7 +265,16 @@ public class Player : MonoBehaviour
         }
 
         // grab our current _velocity to use as a base for all calculations
-        _velocity = _controller.velocity;               
+        _velocity = _controller.velocity;         
+        
+        if(_curJumps == maxJumps)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = lowColor;
+        }
+        else
+        {
+            //gameObject.GetComponent<SpriteRenderer>().color = chargedColor;
+        }
     }
 
     public bool playerIsDashing()
