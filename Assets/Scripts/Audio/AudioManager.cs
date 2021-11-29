@@ -25,16 +25,20 @@ public class AudioManager : MonoBehaviour
             instance = this;
 
         DontDestroyOnLoad(gameObject);
-    }
 
-    private void Start()
-    {
         foreach (Sound sound in sounds)
         {
             sound.Set(gameObject.AddComponent<AudioSource>());
         }
 
         masterVolume = AudioListener.volume;
+     
+
+    }
+
+    private void Start()
+    {
+
         PlaySound(Sound.Name.Soundtrack);
     }
 
