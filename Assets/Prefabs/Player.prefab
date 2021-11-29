@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5863713541937497098
 Transform:
   m_ObjectHideFlags: 0
@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8118309605333584690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.0081, y: 0.062, z: 0}
+  m_LocalScale: {x: 0.13218708, y: 0.41917026, z: 1}
   m_Children: []
   m_Father: {fileID: 8177709215864683765}
   m_RootOrder: 1
@@ -68,18 +68,18 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.75303125, a: 1}
+  m_SortingLayerID: -1983332829
+  m_SortingLayer: 1
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: cfe36d8b217e7994191076764f51aa7d, type: 3}
+  m_Color: {r: 1, g: 0, b: 0.75294113, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8177709215864683774
@@ -163,7 +163,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 99
   m_Sprite: {fileID: 21300000, guid: 0370ca45554824e75921d7740a78749e, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.78478, a: 1}
+  m_Color: {r: 0.3066038, g: 0.76906323, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -320,8 +320,7 @@ MonoBehaviour:
   maxDashSpeed: 25
   maxJumps: 1
   dropThroughOneWayPlatform: 0
-  chargedColor: {r: 1, g: 0, b: 0.6192255, a: 0}
-  lowColor: {r: 0, g: 0.9323077, b: 1, a: 0}
+  chargeIndicator: {fileID: 8118309605333584690}
 --- !u!114 &8177709215864683766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,9 +334,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materializeSpeed: 0.1
-  materialColor: {r: 0.57434916, g: 0.57434916, b: 0.57434916, a: 0}
+  materialColor: {r: 1, g: 0.30352375, b: 0, a: 1}
   dissolveSpeed: 0.1
-  dissolveColor: {r: 0, g: 0, b: 0, a: 0}
+  dissolveColor: {r: 8, g: 0, b: 0.84705883, a: 1}
   curDissolveAmount: 0
 --- !u!60 &6258906647291755202
 PolygonCollider2D:
@@ -464,6 +463,38 @@ PrefabInstance:
     - target: {fileID: 6866475347789280972, guid: e90419e9932020741a7bf94d01182bc6, type: 3}
       propertyPath: m_Name
       value: 10 Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307508414728532745, guid: e90419e9932020741a7bf94d01182bc6, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.34901962
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307508414728532745, guid: e90419e9932020741a7bf94d01182bc6, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307508414728532745, guid: e90419e9932020741a7bf94d01182bc6, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.61046505
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307508414728532745, guid: e90419e9932020741a7bf94d01182bc6, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307508415106447024, guid: e90419e9932020741a7bf94d01182bc6, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.34901962
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307508415106447024, guid: e90419e9932020741a7bf94d01182bc6, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307508415106447024, guid: e90419e9932020741a7bf94d01182bc6, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.6117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307508415106447024, guid: e90419e9932020741a7bf94d01182bc6, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e90419e9932020741a7bf94d01182bc6, type: 3}

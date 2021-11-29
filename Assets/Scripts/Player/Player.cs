@@ -36,8 +36,9 @@ public class Player : MonoBehaviour
     private Disolver _disolver;
     private Transform _trail;
 
-    public Color chargedColor;
-    public Color lowColor;
+    public GameObject chargeIndicator;
+    private bool firstGrounding = false;
+    private bool chargeIndicatorOn = true;
 
     void Awake()
     {
@@ -129,6 +130,7 @@ public class Player : MonoBehaviour
             _curJumps = 0;
             _isDashing = false;
             _velocity.y = 0;
+            firstGrounding = true;
         }
 
 
@@ -269,11 +271,11 @@ public class Player : MonoBehaviour
         
         if(_curJumps == maxJumps)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = lowColor;
+            chargeIndicator.SetActive(false);
         }
-        else
+        else if(firstGrounding && chargeIndicatorOn)
         {
-            //gameObject.GetComponent<SpriteRenderer>().color = chargedColor;
+            chargeIndicator.SetActive(true);
         }
     }
 
@@ -286,10 +288,17 @@ public class Player : MonoBehaviour
     internal void Damage()
     {
         alive = false;
+        hideIndicator();
         _trail.gameObject.SetActive(false);
         AudioManager.instance.PlaySound(Sound.Name.PlayerDamaged);
         _disolver.Out();
         FindObjectOfType<LevelController>().Lose();
+    }
+
+    public void hideIndicator()
+    {
+        chargeIndicatorOn = false;
+        chargeIndicator.SetActive(false);
     }
 
 }
