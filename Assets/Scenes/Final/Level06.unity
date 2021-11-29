@@ -4487,17 +4487,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1388910778305945142, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
-      propertyPath: levelName
-      value: Level Two
-      objectReference: {fileID: 0}
     - target: {fileID: 6052663687187112829, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6052663687955091347, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6052663688055896640, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_Pivot.x
@@ -4586,10 +4578,6 @@ PrefabInstance:
     - target: {fileID: 6052663688055896764, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_Name
       value: Level Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6052663688055896764, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
