@@ -7,28 +7,28 @@ TextureImporter:
     second: idle
   - first:
       213: 21300002
-    second: duck
+    second: idle_4
   - first:
       213: 21300004
-    second: spelunky_animations_2
+    second: idle_5
   - first:
       213: 21300006
-    second: duck_1
+    second: idle_1
   - first:
       213: 21300008
-    second: duck_2
+    second: idle_2
   - first:
       213: 21300010
-    second: duck_3
+    second: idle_3
   - first:
       213: 21300012
-    second: crawl_1
+    second: idle_6
   - first:
       213: 21300014
-    second: crawl_2
+    second: idle_7
   - first:
       213: 21300016
-    second: crawl_3
+    second: idle_8
   - first:
       213: 21300018
     second: crawl_4
@@ -319,11 +319,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: duck
+      name: idle_4
       rect:
         serializedVersion: 2
-        x: 160
-        y: 960
+        x: 240
+        y: 880
         width: 80
         height: 80
       alignment: 0
@@ -340,11 +340,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spelunky_animations_2
+      name: idle_5
       rect:
         serializedVersion: 2
-        x: 400
-        y: 960
+        x: 320
+        y: 880
         width: 80
         height: 80
       alignment: 0
@@ -361,7 +361,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: duck_1
+      name: idle_1
       rect:
         serializedVersion: 2
         x: 0
@@ -382,7 +382,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: duck_2
+      name: idle_2
       rect:
         serializedVersion: 2
         x: 80
@@ -403,7 +403,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: duck_3
+      name: idle_3
       rect:
         serializedVersion: 2
         x: 160
@@ -424,7 +424,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crawl_1
+      name: idle_6
       rect:
         serializedVersion: 2
         x: 400
@@ -445,11 +445,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crawl_2
+      name: idle_7
       rect:
         serializedVersion: 2
-        x: 480
-        y: 880
+        x: 479
+        y: 881
         width: 80
         height: 80
       alignment: 0
@@ -466,11 +466,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crawl_3
+      name: idle_8
       rect:
         serializedVersion: 2
         x: 560
-        y: 880
+        y: 881
         width: 80
         height: 80
       alignment: 0
@@ -1833,7 +1833,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e44531e5f1bfa0246b1e1dd9be80712d
     internalID: 0
     vertices: []
     indices: 
