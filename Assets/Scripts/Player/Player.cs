@@ -64,11 +64,12 @@ public class Player : MonoBehaviour
     {
         _disolver.In();
         _trail.gameObject.SetActive(false);
+        AudioManager.instance.PlaySound(Sound.Name.PlayerSpawned);
     }
 
     private void _disolver_onMaterialized()
     {
-        AudioManager.instance.PlaySound(Sound.Name.PlayerSpawned);
+        
         alive = true;
         _trail.gameObject.SetActive(true);
       
@@ -167,7 +168,7 @@ public class Player : MonoBehaviour
         }
 
         // Apply velocity based on the current dash input
-        bool tryingToDash = Input.GetKey(KeyCode.LeftShift);
+        bool tryingToDash = Input.GetKeyDown(KeyCode.LeftShift);
         bool allowedToDash = !_isDashing  &&  _curJumps < maxJumps;
         
         if (tryingToDash && allowedToDash )
