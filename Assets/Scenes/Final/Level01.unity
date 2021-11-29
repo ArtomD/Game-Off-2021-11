@@ -5566,9 +5566,57 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1257298719, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.5765682
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257298719, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257298719, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257298719, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.817049
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257298719, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -973
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257298719, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -44
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257298719, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 250.419
+      objectReference: {fileID: 0}
     - target: {fileID: 1874398379, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958753549, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958753550, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958753550, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958753550, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 787
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958753550, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -211
       objectReference: {fileID: 0}
     - target: {fileID: 5777287622905459963, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
