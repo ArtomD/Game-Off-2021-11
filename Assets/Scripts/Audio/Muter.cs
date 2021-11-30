@@ -8,7 +8,8 @@ public class Muter : MonoBehaviour
     private AudioManager am;
     public void ToggleMute()
     {        
-        am.ToggleMute();
+        if(am != null)
+            am.ToggleMute();
     }
 
     // Start is called before the first frame update

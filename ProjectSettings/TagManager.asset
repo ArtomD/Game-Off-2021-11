@@ -14,6 +14,7 @@ TagManager:
   - LineJoint
   - StartPoint
   - EndPoint
+  - Doodad
   layers:
   - Default
   - TransparentFX

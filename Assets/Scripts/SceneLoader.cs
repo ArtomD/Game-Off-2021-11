@@ -45,6 +45,12 @@ public class SceneLoader : MonoBehaviour
 
     public static void LoadFirstLevel()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
+    }
+
+    public static void LoadIntro()
+    {
+        SceneManager.LoadScene("Intro");
+        AudioManager.instance.PlaySound(Sound.Name.Fail);
     }
 }
