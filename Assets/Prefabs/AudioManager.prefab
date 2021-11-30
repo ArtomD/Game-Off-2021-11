@@ -119,9 +119,19 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: df409fa32db28404086b9237509cd8a4, type: 3}
     volume: 0.6
     pitch: 2
-  - name: 15
+  - name: 16
     loop: 1
     clip: {fileID: 8300000, guid: e7af52c2939701c41b7b676e4e5971d0, type: 3}
     volume: 0.15
+    pitch: 1
+  - name: 15
+    loop: 0
+    clip: {fileID: 8300000, guid: c3b42519f0b599e42b2c0cce0acefbe3, type: 3}
+    volume: 0.5
+    pitch: 1
+  - name: 17
+    loop: 0
+    clip: {fileID: 8300000, guid: 8779c3105d5f960409474e98240d3f6e, type: 3}
+    volume: 0.3
     pitch: 1
   masterVolume: 0.705

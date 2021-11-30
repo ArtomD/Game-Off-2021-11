@@ -24,7 +24,8 @@ public class Sound
         LevelComplete, // Done
         Soundtrack,// done
         Fail,// done
-        Ambience// done
+        Ambience,// done
+        Win
 
     }
 
