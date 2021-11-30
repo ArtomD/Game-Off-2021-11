@@ -8409,13 +8409,73 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 899645039, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257298719, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.21441457
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257298719, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257298719, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257298719, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.97674274
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257298719, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -521
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257298719, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 327
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257298719, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 155.238
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958753549, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974725825, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 405.8079
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974725825, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 182.2051
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974725825, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 253
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974725825, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 121.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974725826, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_text
+      value: Exposed and engaged firewall kills
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974725826, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_margin.z
+      value: 2.5047913
+      objectReference: {fileID: 0}
     - target: {fileID: 6052663687187112829, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6052663687955091347, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6052663688055896640, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_Pivot.x

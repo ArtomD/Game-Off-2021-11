@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public float masterVolume = 1;
     private float holdVolume = 1;
     private bool mute = false;
+    private float muteVolumeHold;
 
     [SerializeField]
     public static AudioClip player;
@@ -31,15 +32,38 @@ public class AudioManager : MonoBehaviour
             sound.Set(gameObject.AddComponent<AudioSource>());
         }
 
-        masterVolume = AudioListener.volume;
-     
-
+        LoadAudioSettings();
     }
 
     private void Start()
     {
-
         PlaySound(Sound.Name.Soundtrack);
+        PlaySound(Sound.Name.Ambience);
+
+    }
+
+    public void LoadAudioSettings()
+    {        
+        if (PlayerPrefs.HasKey("Volume"))            
+            UpdateVolue(PlayerPrefs.GetFloat("Volume"));
+        else
+        {
+            UpdateVolue(AudioListener.volume);
+        }
+
+        if (PlayerPrefs.HasKey("Mute"))
+        {
+            if(PlayerPrefs.GetInt("Mute") == 1 && !mute)
+            {
+                Mute();
+            }
+            else if(PlayerPrefs.GetInt("Mute") != 1 && mute)
+            {
+                Unmute();
+            }
+        }
+
+
     }
 
 
@@ -66,8 +90,14 @@ public class AudioManager : MonoBehaviour
 
     public void UpdateVolue(float volume)
     {
+        if (volume > 0 && mute)
+        {
+            mute = false;
+            PlayerPrefs.SetInt("Mute", 0);
+        }            
         masterVolume = volume;
         AudioListener.volume = masterVolume;
+        PlayerPrefs.SetFloat("Volume", masterVolume);
     }
 
     public float GetVolume()
@@ -77,15 +107,21 @@ public class AudioManager : MonoBehaviour
 
     public void Mute()
     {
-        holdVolume = AudioListener.volume;
-        UpdateVolue(0);
+        PlayerPrefs.SetInt("Mute", 1);
         mute = true;
+        if (muteVolumeHold <= AudioListener.volume)
+        {
+            muteVolumeHold = AudioListener.volume;
+        }        
+        UpdateVolue(0);
+            
     }
 
     public void Unmute()
     {
         UpdateVolue(holdVolume);
         mute = false;
+        PlayerPrefs.SetInt("Mute", 0);
     }
 
     public void ToggleMute()
@@ -126,5 +162,10 @@ public class AudioManager : MonoBehaviour
         {
             Debug.LogWarning("No sound setup for " + name.ToString());
         }
+    }
+
+    public bool GetMuteStatus()
+    {
+        return mute;
     }
 }

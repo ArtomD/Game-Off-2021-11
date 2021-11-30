@@ -46,8 +46,8 @@ MonoBehaviour:
   sounds:
   - name: 14
     loop: 1
-    clip: {fileID: 8300000, guid: e7af52c2939701c41b7b676e4e5971d0, type: 3}
-    volume: 0.3
+    clip: {fileID: 8300000, guid: 474e09605111a6c479443bf52d5f343e, type: 3}
+    volume: 0.2
     pitch: 1
   - name: 1
     loop: 0
@@ -67,8 +67,8 @@ MonoBehaviour:
   - name: 3
     loop: 0
     clip: {fileID: 8300000, guid: 0c6e1f57d0629154ea58030376ef262b, type: 3}
-    volume: 0.4
-    pitch: 0.6
+    volume: 0.3
+    pitch: 0.3
   - name: 4
     loop: 1
     clip: {fileID: 8300000, guid: f65f94a875c9e864991f8d847111272a, type: 3}
@@ -119,4 +119,9 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: df409fa32db28404086b9237509cd8a4, type: 3}
     volume: 0.6
     pitch: 2
+  - name: 15
+    loop: 1
+    clip: {fileID: 8300000, guid: e7af52c2939701c41b7b676e4e5971d0, type: 3}
+    volume: 0.15
+    pitch: 1
   masterVolume: 0.705

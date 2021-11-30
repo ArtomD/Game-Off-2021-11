@@ -22,7 +22,9 @@ public class Sound
         PanelSet,  // Done
         PanelUnset,// Done
         LevelComplete, // Done
-        Soundtrack// done
+        Soundtrack,// done
+        Ambience// done
+
     }
 
     public AudioClip clip;
