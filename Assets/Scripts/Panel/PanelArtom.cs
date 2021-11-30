@@ -328,7 +328,10 @@ public class PanelArtom : MonoBehaviour
                 completed = false;
             }
         }
-
+        if (completed)
+        {
+            AudioManager.instance.UnPause(Sound.Name.PanelSetUnpowered);
+        }
 
 
     }

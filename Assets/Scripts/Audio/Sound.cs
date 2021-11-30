@@ -25,7 +25,8 @@ public class Sound
         Soundtrack,// done
         Fail,// done
         Ambience,// done
-        Win
+        Win,
+        PanelSetUnpowered  // Done
 
     }
 
