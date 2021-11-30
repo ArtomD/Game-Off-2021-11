@@ -23,6 +23,7 @@ public class Sound
         PanelUnset,// Done
         LevelComplete, // Done
         Soundtrack,// done
+        Fail,// done
         Ambience// done
 
     }
