@@ -7,8 +7,7 @@ public class Muter : MonoBehaviour
 {
     private AudioManager am;
     public void ToggleMute()
-    {
-        Debug.Log("MUTING");
+    {        
         am.ToggleMute();
     }
 
@@ -17,16 +16,13 @@ public class Muter : MonoBehaviour
     {
         am = FindObjectOfType<AudioManager>();
         
-        
-        Debug.Log("MG" + am.GetMuteStatus());
-
         if (am.GetMuteStatus())
-        {
-            
-            gameObject.GetComponent<Toggle>().isOn = false;
-            am.Mute();
+        {            
+            gameObject.GetComponent<Toggle>().SetIsOnWithoutNotify(false);            
         }
-            
+        am.LoadAudioSettings();
+
+
     }
 
     // Update is called once per frame
