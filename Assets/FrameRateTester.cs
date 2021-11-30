@@ -15,18 +15,18 @@ public class FrameRateTester : MonoBehaviour
             int curRate = Application.targetFrameRate;
             switch (curRate)
             {
+                default:
                 case 30:
                     Application.targetFrameRate = 60;
                     break;
-                default:
                 case 60:
-                    Application.targetFrameRate = 60;
+                    Application.targetFrameRate = 90;
                     break;
                 case 90:
-                    Application.targetFrameRate = 60;
+                    Application.targetFrameRate = 120;
                     break;
                 case 120:
-
+                    Application.targetFrameRate = 30;
                     break;
             }
 
