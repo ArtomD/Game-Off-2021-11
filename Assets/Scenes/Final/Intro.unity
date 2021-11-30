@@ -256,7 +256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &234065911
 RectTransform:
   m_ObjectHideFlags: 0
@@ -596,7 +596,7 @@ GameObject:
   - component: {fileID: 250928944}
   - component: {fileID: 250928943}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: 'Description '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -641,8 +641,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The latest patch left holes in the firewall. We''re just sending in a
-    droid to sweep up the issues to path the gaps.
+  m_text: 'The latest patch left some holes in the firewall. We''re just sending
+    in a droid to sweep up the issues and patch the gaps.
 
 
     (0% complete).
@@ -738,7 +738,7 @@ GameObject:
   - component: {fileID: 322270597}
   - component: {fileID: 322270596}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Header
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -947,7 +947,7 @@ GameObject:
   - component: {fileID: 330337046}
   - component: {fileID: 330337045}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1027,7 +1027,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &330604173
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1231,7 +1231,7 @@ GameObject:
   - component: {fileID: 658810117}
   - component: {fileID: 658810116}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Button text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1764,7 +1764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1290019563
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2203,7 +2203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1646606882
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2802,7 +2802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2111436564
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2960,7 +2960,7 @@ GameObject:
   - component: {fileID: 2133832077}
   - component: {fileID: 2133832076}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
