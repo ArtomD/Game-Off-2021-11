@@ -7411,7 +7411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3002068986188165960, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_text
-      value: change dash direction
+      value: AIM DASH
       objectReference: {fileID: 0}
     - target: {fileID: 3148460896912202380, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_text

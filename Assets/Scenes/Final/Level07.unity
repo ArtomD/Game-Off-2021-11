@@ -1337,7 +1337,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &369416352
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3578,7 +3578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &814286103
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4557,7 +4557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1056818451
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7313,7 +7313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2011544718
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7761,6 +7761,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 644760379, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 644760380, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -1047.5
@@ -7768,6 +7772,10 @@ PrefabInstance:
     - target: {fileID: 644760380, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 287.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 899645039, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 899645040, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -7823,11 +7831,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1974725825, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 132.1
+      value: -73.4
       objectReference: {fileID: 0}
     - target: {fileID: 1974725826, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_text
-      value: SLIDE conduite
+      value: Some panels slide
       objectReference: {fileID: 0}
     - target: {fileID: 1974725826, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_margin.x
