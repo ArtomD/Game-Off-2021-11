@@ -106,6 +106,7 @@ public class Player : MonoBehaviour
             AudioManager.instance.PlaySound(Sound.Name.PlayerDashAvailable);
         }
         _curJumps = 0;
+        chargeIndicator.SetActive(true);
     }
 
 

@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public float masterVolume = 1;
     private float holdVolume = 1;
     private bool mute = false;
+    private float muteVolumeHold;
 
     [SerializeField]
     public static AudioClip player;
@@ -31,15 +32,14 @@ public class AudioManager : MonoBehaviour
             sound.Set(gameObject.AddComponent<AudioSource>());
         }
 
-        masterVolume = AudioListener.volume;
-     
-
+        //masterVolume = AudioListener.volume;        
     }
 
     private void Start()
     {
 
         PlaySound(Sound.Name.Soundtrack);
+        PlaySound(Sound.Name.Ambience);
     }
 
 
@@ -77,9 +77,12 @@ public class AudioManager : MonoBehaviour
 
     public void Mute()
     {
-        holdVolume = AudioListener.volume;
+        if(muteVolumeHold <= AudioListener.volume)
+        {
+            muteVolumeHold = AudioListener.volume;
+        }        
         UpdateVolue(0);
-        mute = true;
+        mute = true;        
     }
 
     public void Unmute()
@@ -126,5 +129,10 @@ public class AudioManager : MonoBehaviour
         {
             Debug.LogWarning("No sound setup for " + name.ToString());
         }
+    }
+
+    public bool GetMuteStatus()
+    {
+        return mute;
     }
 }
