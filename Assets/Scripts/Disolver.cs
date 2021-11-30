@@ -33,7 +33,7 @@ public class Disolver : MonoBehaviour
 
 
     public void In(){ 
-        Debug.Log("Materializing to: " + materialColor.ToString());
+        //Debug.Log("Materializing to: " + materialColor.ToString());
         curDissolveAmount = material.GetFloat("_DisolveAmount");
         material.SetColor("_DisolveColor", materialColor);
         StartCoroutine(Process(maxDissolve, materializeSpeed)); 

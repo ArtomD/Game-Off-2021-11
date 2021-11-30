@@ -15,12 +15,11 @@ public class PlayerDashIndicator : MonoBehaviour
     [SerializeField] private float tweakRotation = -90;
 
 
-    private Player player;
+    private Player _player;
 
-    void Start()
+    private void Awake()
     {
-        player = GetComponent<Player>();
-        
+        _player = GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -29,7 +28,7 @@ public class PlayerDashIndicator : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-        if (Mathf.Abs(horizontal) + Mathf.Abs(vertical) > 0.1f) {
+        if (_player.IsAlive() && Mathf.Abs(horizontal) + Mathf.Abs(vertical) > 0.1f) {
             indicator.SetActive(true);
             // Alternately, we can get the 
             Vector3 offsetDirection = new Vector3(horizontal, vertical, 0).normalized;

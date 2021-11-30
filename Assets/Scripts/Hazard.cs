@@ -21,7 +21,7 @@ public class Hazard : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Player player = collision.gameObject.GetComponent<Player>();
-            player.Damage();
+            player.Die();
 
             
         }        
