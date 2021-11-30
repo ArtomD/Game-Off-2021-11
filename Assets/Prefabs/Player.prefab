@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 8177709215864683775}
   - component: {fileID: 8177709215864683766}
   - component: {fileID: 6258906647291755202}
+  - component: {fileID: 1737530362}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -314,11 +315,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: -9
   runSpeed: 8
-  groundDamping: 20
-  inAirDamping: 5
-  jumpHeight: 5
+  groundDamping: 0.0001
+  inAirDamping: 0.01
+  jumpHeight: 100
   maxDashTime: 0.32
-  maxDashSpeed: 25
+  maxDashSpeed: 30
   maxJumps: 1
   dropThroughOneWayPlatform: 0
   chargeIndicator: {fileID: 8118309605333584690}
@@ -411,6 +412,18 @@ PolygonCollider2D:
       - {x: 0.07, y: -0.03}
       - {x: 0.04, y: -0.049999997}
       - {x: -0.03, y: -0.049999997}
+--- !u!114 &1737530362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8177709215864683774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 482a58bf5274a1e4bbf3c023b5ad5e67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6327847919587935159
 PrefabInstance:
   m_ObjectHideFlags: 0
