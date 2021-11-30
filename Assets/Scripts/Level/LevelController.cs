@@ -17,6 +17,7 @@ public class LevelController : MonoBehaviour
     public Slider slider;
     private DateTime restartPressedAt;
     public GameObject winScreen;
+    public GameObject introScreen;
 
     public string levelName;
 
@@ -24,6 +25,10 @@ public class LevelController : MonoBehaviour
     private float elapsedTime;
     private Player _player;
 
+    public bool showWinScreen = false;
+    public bool showIntroScreen = true;
+    public float introScreenDuration = 3;
+    
     private enum LevelState  {
         Won,
         Lost,
@@ -40,9 +45,21 @@ public class LevelController : MonoBehaviour
     void Start()
     {      
         winScreen.SetActive(false);
+        introScreen.SetActive(false);
         time = DateTime.UtcNow;
         levelText.GetComponent<TextMeshProUGUI>().text = levelName;
         _player.onPlayerDissolveComplete += _player_onPlayerDissolved;
+        
+
+        if(PlayerPrefs.HasKey("LastLevel")){
+            if(PlayerPrefs.GetInt("LastLevel") != SceneManager.GetActiveScene().buildIndex)            
+            {
+                if (showIntroScreen)
+                    StartCoroutine(ShowIntro(introScreenDuration));
+            }            
+        }
+
+        PlayerPrefs.SetInt("LastLevel", SceneManager.GetActiveScene().buildIndex);
     }
 
     private void _player_onPlayerDissolved(bool isAlive)
@@ -54,7 +71,10 @@ public class LevelController : MonoBehaviour
 
         } else
         {
-            winScreen.SetActive(true);
+            if (showWinScreen)
+                winScreen.SetActive(true);
+            else
+                SceneLoader.LoadNextLevel();
         }
     }
 
@@ -109,6 +129,14 @@ public class LevelController : MonoBehaviour
 
     public void StopTimer()
     {
+
+    }
+
+    IEnumerator ShowIntro(float seconds)
+    {
+        introScreen.SetActive(true);
+        yield return new WaitForSeconds(seconds);
+        introScreen.SetActive(false);
 
     }
 

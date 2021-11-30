@@ -7387,6 +7387,7 @@ MonoBehaviour:
     endPosition: {fileID: 0}
     lineJoint: {fileID: 0}
     lineMain: []
+    doodads: []
     effect: {fileID: 0}
   - connection: {fileID: 2083951287}
     targetPanel: {fileID: 497463343}
@@ -7394,6 +7395,7 @@ MonoBehaviour:
     endPosition: {fileID: 0}
     lineJoint: {fileID: 0}
     lineMain: []
+    doodads: []
     effect: {fileID: 0}
   - connection: {fileID: 197720215}
     targetPanel: {fileID: 0}
@@ -7401,6 +7403,7 @@ MonoBehaviour:
     endPosition: {fileID: 0}
     lineJoint: {fileID: 0}
     lineMain: []
+    doodads: []
     effect: {fileID: 0}
   - connection: {fileID: 63228614}
     targetPanel: {fileID: 0}
@@ -7408,6 +7411,7 @@ MonoBehaviour:
     endPosition: {fileID: 0}
     lineJoint: {fileID: 0}
     lineMain: []
+    doodads: []
     effect: {fileID: 0}
   - connection: {fileID: 1455224931}
     targetPanel: {fileID: 0}
@@ -7415,6 +7419,7 @@ MonoBehaviour:
     endPosition: {fileID: 0}
     lineJoint: {fileID: 0}
     lineMain: []
+    doodads: []
     effect: {fileID: 0}
   - connection: {fileID: 420423330}
     targetPanel: {fileID: 0}
@@ -7422,6 +7427,7 @@ MonoBehaviour:
     endPosition: {fileID: 0}
     lineJoint: {fileID: 0}
     lineMain: []
+    doodads: []
     effect: {fileID: 0}
   - connection: {fileID: 827737735}
     targetPanel: {fileID: 0}
@@ -7429,6 +7435,7 @@ MonoBehaviour:
     endPosition: {fileID: 0}
     lineJoint: {fileID: 0}
     lineMain: []
+    doodads: []
     effect: {fileID: 0}
   start:
     connection: {fileID: 1709745603}
@@ -7437,6 +7444,7 @@ MonoBehaviour:
     endPosition: {fileID: 0}
     lineJoint: {fileID: 0}
     lineMain: []
+    doodads: []
     effect: {fileID: 0}
   end:
     connection: {fileID: 245626228}
@@ -7445,6 +7453,7 @@ MonoBehaviour:
     endPosition: {fileID: 0}
     lineJoint: {fileID: 0}
     lineMain: []
+    doodads: []
     effect: {fileID: 0}
   visualTemplate: {fileID: 1892056202694066568, guid: cfcc12ace4edb8e478cf449bb87b539f, type: 3}
   glow: {fileID: 2100000, guid: 80b896e0a8d20b544bb9666f02c818ac, type: 2}
@@ -7486,6 +7495,10 @@ PrefabInstance:
     - target: {fileID: 3002068986188165960, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_text
       value: change dash direction
+      objectReference: {fileID: 0}
+    - target: {fileID: 3148460896912202380, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_text
+      value: LEVEL 3
       objectReference: {fileID: 0}
     - target: {fileID: 4341707301126730988, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_AnchoredPosition.x
