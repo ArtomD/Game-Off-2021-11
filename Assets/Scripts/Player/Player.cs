@@ -16,9 +16,6 @@ public class Player : MonoBehaviour
     [Header("Jump & Dash Settings")]
     [SerializeField] private float jumpHeight = 3f;
     [SerializeField] private float maxDashTime = 0.25f;
-
-
-
     [SerializeField] private float maxDashSpeed = 20f;
     [SerializeField] private int maxJumps = 2;
     [SerializeField] private bool dropThroughOneWayPlatform = false;
@@ -34,13 +31,16 @@ public class Player : MonoBehaviour
     private Vector2 impulseForce = new Vector2(0, 0);
 
     private Disolver _disolver;
-    private Transform _trail;
+    private GameObject _trail;
 
     public GameObject chargeIndicator;
-    private bool firstGrounding = false;
-    private bool chargeIndicatorOn = true;
-
     public ParticleSystem dashTrail;
+
+    private bool _isAlive = true;
+    private bool _allowMovement = false;
+
+    public event Action<bool> onPlayerDissolveBegin;
+    public event Action<bool> onPlayerDissolveComplete;
 
     void Awake()
     {
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
         _disolver = GetComponent<Disolver>();
         _controller = GetComponent<CharacterController2D>();
-        _trail = transform.Find("10 Trail");
+        _trail = transform.Find("10 Trail").gameObject;
 
         // listen to some events for illustration purposes
         _controller.onControllerCollidedEvent += onControllerCollider;
@@ -66,22 +66,25 @@ public class Player : MonoBehaviour
     public void Start()
     {
         _disolver.In();
-        _trail.gameObject.SetActive(false);
+        _trail.SetActive(false);
         AudioManager.instance.PlaySound(Sound.Name.PlayerSpawned);
     }
 
     private void _disolver_onMaterialized()
     {
         
-        alive = true;
-        _trail.gameObject.SetActive(true);
+        _allowMovement = true;
+        _trail.SetActive(true);
       
     }
 
     private void _disolver_onDissolved()
     {
-        AudioManager.instance.PlaySound(Sound.Name.PlayerDied);
-        AudioManager.instance.Pause(Sound.Name.PlayerWalk);
+        if (onPlayerDissolveComplete != null)
+            onPlayerDissolveComplete(_isAlive);
+
+        Destroy(this.gameObject);
+
     }
 
 
@@ -118,8 +121,12 @@ public class Player : MonoBehaviour
         impulseForce.y = force.y;
     }
 
-    private float debugMarkTimer = 0;
-    private bool alive;
+
+
+    private float Damp(float source, float target, float smoothing, float dt)
+    {
+        return Mathf.Lerp(source, target, 1 - Mathf.Pow(smoothing, dt));
+    }
 
     // the Update loop contains a very simple example of moving the character around and controlling the animation
     void Update()
@@ -129,23 +136,15 @@ public class Player : MonoBehaviour
 
         Vector2 targetVelocity = new Vector2(0, 0);
 
+
         if (_controller.isGrounded)
         {
             _curJumps = 0;
             _isDashing = false;
             _velocity.y = 0;
-            firstGrounding = true;
+            chargeIndicator.SetActive(true);
+            dashTrail.Stop();
         }
-
-
-        debugMarkTimer += Time.deltaTime;
-        if (debugMarkTimer >= 0.05f)
-        {
-
-            Debug.DrawLine(this.transform.position, this.transform.position + new Vector3(0.1f, 0.1f, 0), Color.red, 2);
-            debugMarkTimer -= .05f;
-        }
-
         
         // TODO: Move to animation state machine
         if (horizontal > 0.5f)
@@ -180,7 +179,7 @@ public class Player : MonoBehaviour
         }
 
         // Apply velocity based on the current dash input
-        bool tryingToDash = Input.GetKeyDown(KeyCode.LeftShift);
+        bool tryingToDash = Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift);
         bool allowedToDash = !_isDashing  &&  _curJumps < maxJumps;
         
         if (tryingToDash && allowedToDash )
@@ -222,11 +221,11 @@ public class Player : MonoBehaviour
         {
             if (  _controller.isGrounded) {
                 AudioManager.instance.PlaySound(Sound.Name.PlayerJump);
-                _velocity.y = Mathf.Sqrt(2f * jumpHeight * -gravity  * inAirDamping);
+                _velocity.y =2f * jumpHeight * -gravity  * inAirDamping;
                 _animator.Play(Animator.StringToHash("Jump"));
             } else
             {
-                Debug.Log("Jump pressed but not grounded - maybe change jump threshold");
+                //Debug.Log("Jump pressed but not grounded - maybe change jump threshold");
             }
 
         }
@@ -254,9 +253,10 @@ public class Player : MonoBehaviour
             targetVelocity.x = Mathf.MoveTowards(_velocity.x, horizontal * runSpeed, -1*gravity);
         }
 
-        //targetVelocity = Vector2.ClampMagnitude(targetVelocity, runSpeed);
-        _velocity.x = Mathf.Lerp(_velocity.x, targetVelocity.x, Time.deltaTime * smoothedMovementFactor);
-        _velocity.y = Mathf.Lerp(_velocity.y, targetVelocity.y, Time.deltaTime * smoothedMovementFactor);
+
+        //transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+        _velocity.x = Damp(_velocity.x, targetVelocity.x, smoothedMovementFactor, Time.deltaTime);
+        _velocity.y = Damp(_velocity.y, targetVelocity.y, smoothedMovementFactor, Time.deltaTime);
 
 
         // if holding down bump up our movement amount and turn off one way platform detection for a frame.
@@ -264,15 +264,15 @@ public class Player : MonoBehaviour
         if (dropThroughOneWayPlatform && _controller.isGrounded && vertical <= -0.5f )
         {
             _velocity.y = -runSpeed;
-
             _controller.ignoreOneWayPlatformsThisFrame = true;
         }
 
-        if (alive) { 
+        if (_allowMovement) { 
             _controller.move(_velocity * Time.deltaTime);
         }
+
         // TODO: Make sure the sound manager completes a loop before playing again
-        if (_controller.isGrounded && _controller.velocity.sqrMagnitude >= 0.2f)
+        if (_allowMovement && _controller.isGrounded && _controller.velocity.sqrMagnitude >= 0.2f)
         {
             
             AudioManager.instance.UnPause(Sound.Name.PlayerWalk);
@@ -288,34 +288,33 @@ public class Player : MonoBehaviour
         {
             chargeIndicator.SetActive(false);
         }
-        else if(firstGrounding && chargeIndicatorOn)
-        {
-            chargeIndicator.SetActive(true);
-            dashTrail.Stop();
-        }
 
     }
 
-    public bool playerIsDashing()
+    public bool IsAlive()
+    {
+        return _isAlive;
+    }
+
+    public bool PlayerIsDashing()
     {
         return _isDashing;
     }
 
 
-    internal void Damage()
+    public void Dissolve()
     {
-        alive = false;
-        hideIndicator();
-        _trail.gameObject.SetActive(false);
-        AudioManager.instance.PlaySound(Sound.Name.PlayerDamaged);
+        chargeIndicator.SetActive(false);
+        _trail.SetActive(false);
+        _allowMovement = false;
         _disolver.Out();
-        FindObjectOfType<LevelController>().Lose();
     }
 
-    public void hideIndicator()
+    public void Die()
     {
-        chargeIndicatorOn = false;
-        chargeIndicator.SetActive(false);        
+        AudioManager.instance.PlaySound(Sound.Name.PlayerDamaged);
+        _isAlive = false;
+        Dissolve();
     }
 
 }

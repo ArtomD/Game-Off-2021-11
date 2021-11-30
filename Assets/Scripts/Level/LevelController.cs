@@ -22,6 +22,7 @@ public class LevelController : MonoBehaviour
 
     private DateTime time;
     private float elapsedTime;
+    private Player _player;
 
     private enum LevelState  {
         Won,
@@ -31,13 +32,30 @@ public class LevelController : MonoBehaviour
 
     private LevelState levelState = LevelState.InProgress;
 
-
+    private void Awake()
+    {
+        _player = FindObjectOfType<Player>();
+    }
     // Start is called before the first frame update
     void Start()
     {      
         winScreen.SetActive(false);
         time = DateTime.UtcNow;
         levelText.GetComponent<TextMeshProUGUI>().text = levelName;
+        _player.onPlayerDissolveComplete += _player_onPlayerDissolved;
+    }
+
+    private void _player_onPlayerDissolved(bool isAlive)
+    {
+        if (!isAlive)
+        {
+            this.levelState = LevelState.Lost; // irrelevant now
+            SceneLoader.RestartLevel();
+
+        } else
+        {
+            winScreen.SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -84,41 +102,10 @@ public class LevelController : MonoBehaviour
 
         this.levelState = LevelState.Won;
 
+        _player.Dissolve();
         AudioManager.instance.PlaySound(Sound.Name.LevelComplete);
-        StartCoroutine(EndIEnum(true));
-     
     }
 
-    public void Lose()
-    {
-        if (levelState == LevelState.Lost)
-        {
-            Debug.LogWarning("You are calling Lose() after the level is already complete. Please Stop!");
-            return;
-        }
-        
-        this.levelState = LevelState.Lost;
-        StartCoroutine(EndIEnum(false));
-    }
-
-    private IEnumerator EndIEnum(bool win)
-    {                
-        FindObjectOfType<Player>().hideIndicator();
-        FindObjectOfType<Player>().gameObject.GetComponent<Disolver>().Out();
-        FindObjectOfType<Player>().gameObject.GetComponent<Collider2D>().isTrigger = false;
-        yield return new WaitForSeconds(1);
-        FindObjectOfType<Player>().gameObject.SetActive(false);          
-        yield return new WaitForSeconds(0.1f);
-        if (win) { 
-
-            winScreen.SetActive(true);
-        }
-        else
-        {
-            SceneLoader.RestartLevel();
-        }
-        //SceneLoader.LoadNextLevel();
-    }
 
     public void StopTimer()
     {

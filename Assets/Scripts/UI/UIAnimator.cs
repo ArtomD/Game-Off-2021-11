@@ -29,7 +29,7 @@ public class UIAnimator : MonoBehaviour
         TMPFields = GameObject.FindGameObjectsWithTag("TextGlow");
         TMPNonGlowFields = GameObject.FindGameObjectsWithTag("TextNoneGlow");
         SliderGlowFields = GameObject.FindGameObjectsWithTag("SliderGlow");
-        Debug.Log(TMPFields.Length);
+        //Debug.Log(TMPFields.Length);
     }
 
     // Start is called before the first frame update

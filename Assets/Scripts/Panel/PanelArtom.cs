@@ -154,7 +154,7 @@ public class PanelArtom : MonoBehaviour
 
     public void rotate(Player player, bool isUp, bool clockwise)
     {
-        Debug.Log("TRYING TO ROTATE: " + ID + " " + timer + " " + Time.time);
+        //Debug.Log("TRYING TO ROTATE: " + ID + " " + timer + " " + Time.time);
         if (timer + rotateCD < Time.time)
         {
 
@@ -168,7 +168,7 @@ public class PanelArtom : MonoBehaviour
 
     public void launchPlayer(Player player, bool isUp, float force)
     {
-        Debug.Log("LAUNCHING : " + isUp);
+        //Debug.Log("LAUNCHING : " + isUp);
 
         if (nextJumpHigh)
         {

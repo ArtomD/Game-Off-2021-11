@@ -94,7 +94,7 @@ public class PanelMapper : MonoBehaviour
             panel.effect.transform.parent = gameObject.transform;            
             panel.effect.gameObject.transform.localScale = new Vector3(Vector3.Distance(panel.endPosition.gameObject.transform.position, panel.startPosition.gameObject.transform.position) / 10, panel.effect.gameObject.transform.localScale.x, panel.effect.gameObject.transform.localScale.z);
 
-            Debug.Log(GetAngle(panel.startPosition.gameObject.transform.position, panel.endPosition.gameObject.transform.position));
+            //Debug.Log(GetAngle(panel.startPosition.gameObject.transform.position, panel.endPosition.gameObject.transform.position));
 
             panel.effect.transform.Rotate(panel.effect.transform.rotation.x, panel.effect.transform.rotation.y, GetAngle(panel.startPosition.gameObject.transform.position, panel.endPosition.gameObject.transform.position) - 90, Space.World);
         }
