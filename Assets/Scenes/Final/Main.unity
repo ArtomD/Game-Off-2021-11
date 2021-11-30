@@ -716,7 +716,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BUGSWEEPER
+  m_text: PATCHDROID
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 49c949e578d86f24986ba5fd6c3cc2f1, type: 2}
   m_sharedMaterial: {fileID: 788881026036554169, guid: 49c949e578d86f24986ba5fd6c3cc2f1, type: 2}
