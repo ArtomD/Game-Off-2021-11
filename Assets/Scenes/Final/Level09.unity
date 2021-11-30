@@ -8454,6 +8454,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1958753550, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958753550, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -148
+      objectReference: {fileID: 0}
     - target: {fileID: 1974725825, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_SizeDelta.x
       value: 405.8079
@@ -8464,15 +8472,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1974725825, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 253
+      value: 281
       objectReference: {fileID: 0}
     - target: {fileID: 1974725825, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 121.4
+      value: 151
       objectReference: {fileID: 0}
     - target: {fileID: 1974725826, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_text
-      value: Exposed and engaged firewall kills
+      value: danger!
       objectReference: {fileID: 0}
     - target: {fileID: 1974725826, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_margin.z
