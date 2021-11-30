@@ -24,14 +24,14 @@ public class PanelMoveHitArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("DASHING: " + collision.gameObject.GetComponent<Player>().playerIsDashing());
+        Debug.Log("DASHING: " + collision.gameObject.GetComponent<Player>().PlayerIsDashing());
         Player player = collision.gameObject.GetComponent<Player>();
         if (player == null)
         {
             player = collision.gameObject.GetComponentInParent<Player>();
         }
-        Debug.Log(player.playerIsDashing());
-        if (collision.gameObject.tag == "Player" && player.playerIsDashing())
+        Debug.Log(player.PlayerIsDashing());
+        if (collision.gameObject.tag == "Player" && player.PlayerIsDashing())
         {
             AudioManager.instance.PlaySound(Sound.Name.PanelCollide);
 

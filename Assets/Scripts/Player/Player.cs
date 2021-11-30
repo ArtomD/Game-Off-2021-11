@@ -36,11 +36,11 @@ public class Player : MonoBehaviour
     public GameObject chargeIndicator;
     public ParticleSystem dashTrail;
 
-    private bool isAlive = true;
-    private bool allowMovement = false;
+    private bool _isAlive = true;
+    private bool _allowMovement = false;
 
-    public event Action<bool> onPlayerDissolveComplete;
     public event Action<bool> onPlayerDissolveBegin;
+    public event Action<bool> onPlayerDissolveComplete;
 
     void Awake()
     {
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
     private void _disolver_onMaterialized()
     {
         
-        allowMovement = true;
+        _allowMovement = true;
         _trail.SetActive(true);
       
     }
@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
     private void _disolver_onDissolved()
     {
         if (onPlayerDissolveComplete != null)
-            onPlayerDissolveComplete(isAlive);
+            onPlayerDissolveComplete(_isAlive);
 
         Destroy(this.gameObject);
 
@@ -267,12 +267,12 @@ public class Player : MonoBehaviour
             _controller.ignoreOneWayPlatformsThisFrame = true;
         }
 
-        if (allowMovement) { 
+        if (_allowMovement) { 
             _controller.move(_velocity * Time.deltaTime);
         }
 
         // TODO: Make sure the sound manager completes a loop before playing again
-        if (allowMovement && _controller.isGrounded && _controller.velocity.sqrMagnitude >= 0.2f)
+        if (_allowMovement && _controller.isGrounded && _controller.velocity.sqrMagnitude >= 0.2f)
         {
             
             AudioManager.instance.UnPause(Sound.Name.PlayerWalk);
@@ -291,8 +291,12 @@ public class Player : MonoBehaviour
 
     }
 
+    public bool IsAlive()
+    {
+        return _isAlive;
+    }
 
-    public bool playerIsDashing()
+    public bool PlayerIsDashing()
     {
         return _isDashing;
     }
@@ -302,14 +306,14 @@ public class Player : MonoBehaviour
     {
         chargeIndicator.SetActive(false);
         _trail.SetActive(false);
-        allowMovement = false;
+        _allowMovement = false;
         _disolver.Out();
     }
 
     public void Die()
     {
         AudioManager.instance.PlaySound(Sound.Name.PlayerDamaged);
-        isAlive = false;
+        _isAlive = false;
         Dissolve();
     }
 

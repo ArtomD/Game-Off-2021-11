@@ -34,7 +34,7 @@ public class PanelRotateHitAreaArtom : MonoBehaviour
             player = collision.gameObject.GetComponentInParent<Player>();
         }
         //Debug.Log(player.playerIsDashing());
-        if (collision.gameObject.tag == "Player" && player.playerIsDashing())
+        if (collision.gameObject.tag == "Player" && player.PlayerIsDashing())
         {
             parentPanel.rotate(player, isUp, rotateClockwise);
         }
