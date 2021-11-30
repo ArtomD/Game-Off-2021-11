@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-       
+        
         _animator = GetComponent<Animator>();
         _disolver = GetComponent<Disolver>();
         _controller = GetComponent<CharacterController2D>();
