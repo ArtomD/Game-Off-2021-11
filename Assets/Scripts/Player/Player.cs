@@ -16,9 +16,6 @@ public class Player : MonoBehaviour
     [Header("Jump & Dash Settings")]
     [SerializeField] private float jumpHeight = 3f;
     [SerializeField] private float maxDashTime = 0.25f;
-
-
-
     [SerializeField] private float maxDashSpeed = 20f;
     [SerializeField] private int maxJumps = 2;
     [SerializeField] private bool dropThroughOneWayPlatform = false;
@@ -42,9 +39,13 @@ public class Player : MonoBehaviour
 
     public ParticleSystem dashTrail;
 
+
+    public event Action onDashStart;
+    public event Action onDashEnd;
+
     void Awake()
     {
-        
+       
         _animator = GetComponent<Animator>();
         _disolver = GetComponent<Disolver>();
         _controller = GetComponent<CharacterController2D>();
@@ -121,6 +122,11 @@ public class Player : MonoBehaviour
     private float debugMarkTimer = 0;
     private bool alive;
 
+    private float Damp(float source, float target, float smoothing, float dt)
+    {
+        return Mathf.Lerp(source, target, 1 - Mathf.Pow(smoothing, dt));
+    }
+
     // the Update loop contains a very simple example of moving the character around and controlling the animation
     void Update()
     {
@@ -128,6 +134,7 @@ public class Player : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
 
         Vector2 targetVelocity = new Vector2(0, 0);
+
 
         if (_controller.isGrounded)
         {
@@ -222,7 +229,7 @@ public class Player : MonoBehaviour
         {
             if (  _controller.isGrounded) {
                 AudioManager.instance.PlaySound(Sound.Name.PlayerJump);
-                _velocity.y = Mathf.Sqrt(2f * jumpHeight * -gravity  * inAirDamping);
+                _velocity.y =2f * jumpHeight * -gravity  * inAirDamping;
                 _animator.Play(Animator.StringToHash("Jump"));
             } else
             {
@@ -254,9 +261,10 @@ public class Player : MonoBehaviour
             targetVelocity.x = Mathf.MoveTowards(_velocity.x, horizontal * runSpeed, -1*gravity);
         }
 
-        //targetVelocity = Vector2.ClampMagnitude(targetVelocity, runSpeed);
-        _velocity.x = Mathf.Lerp(_velocity.x, targetVelocity.x, Time.deltaTime * smoothedMovementFactor);
-        _velocity.y = Mathf.Lerp(_velocity.y, targetVelocity.y, Time.deltaTime * smoothedMovementFactor);
+
+        //transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+        _velocity.x = Damp(_velocity.x, targetVelocity.x, smoothedMovementFactor, Time.deltaTime);
+        _velocity.y = Damp(_velocity.y, targetVelocity.y, smoothedMovementFactor, Time.deltaTime);
 
 
         // if holding down bump up our movement amount and turn off one way platform detection for a frame.
@@ -264,13 +272,13 @@ public class Player : MonoBehaviour
         if (dropThroughOneWayPlatform && _controller.isGrounded && vertical <= -0.5f )
         {
             _velocity.y = -runSpeed;
-
             _controller.ignoreOneWayPlatformsThisFrame = true;
         }
 
         if (alive) { 
             _controller.move(_velocity * Time.deltaTime);
         }
+
         // TODO: Make sure the sound manager completes a loop before playing again
         if (_controller.isGrounded && _controller.velocity.sqrMagnitude >= 0.2f)
         {
@@ -295,6 +303,7 @@ public class Player : MonoBehaviour
         }
 
     }
+
 
     public bool playerIsDashing()
     {
