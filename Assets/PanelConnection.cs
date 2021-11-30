@@ -16,6 +16,9 @@ public class PanelConnection
     public GameObject lineJoint;
     [HideInInspector]
     public List<GameObject> lineMain;
+    [HideInInspector]
+    public List<GameObject> doodads;
+
 
     private GameObject visual;
     [HideInInspector]
@@ -23,6 +26,9 @@ public class PanelConnection
 
     private Material on;
     private Material off;
+
+    private Material doodadOn;
+    private Material doodadOff;
 
     // Start is called before the first frame update
     void Start() {
@@ -45,6 +51,8 @@ public class PanelConnection
                 lineJoint = child;
             if (child.tag == "LineMain")
                 lineMain.Add(child);
+            if (child.tag == "Doodad")
+                doodads.Add(child);
         }
     }
 
@@ -62,7 +70,12 @@ public class PanelConnection
         {
             line.GetComponent<Renderer>().material = off;
         }
-        
+        foreach (GameObject doodad in doodads)
+        {
+            Debug.Log("Tuninr on doodad");
+            doodad.GetComponent<Disolver>().In();
+        }
+
     }
 
     public void Glow()
@@ -72,6 +85,11 @@ public class PanelConnection
         foreach (GameObject line in lineMain)
         {
             line.GetComponent<Renderer>().material = on;
+        }
+        foreach (GameObject doodad in doodads)
+        {
+            Debug.Log("Tuninr off doodad");
+            doodad.GetComponent<Disolver>().Out();
         }
     }
 }
