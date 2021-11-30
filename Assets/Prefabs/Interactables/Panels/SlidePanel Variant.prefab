@@ -827,7 +827,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1404c01093d11fe41bfec81856fdfaac, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3137255, g: 0.2509804, b: 0.5294118, a: 0.54901963}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1147,6 +1147,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 46064f9a380fdcd4c820936cebf5ed38, type: 2}
     - target: {fileID: 8285557029750564453, guid: a0c277d45caed6142845d33b53e08289, type: 3}
+      propertyPath: m_Color.a
+      value: 0.54901963
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285557029750564453, guid: a0c277d45caed6142845d33b53e08289, type: 3}
+      propertyPath: m_Color.b
+      value: 0.5294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285557029750564453, guid: a0c277d45caed6142845d33b53e08289, type: 3}
+      propertyPath: m_Color.g
+      value: 0.2509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285557029750564453, guid: a0c277d45caed6142845d33b53e08289, type: 3}
+      propertyPath: m_Color.r
+      value: 0.3137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285557029750564453, guid: a0c277d45caed6142845d33b53e08289, type: 3}
       propertyPath: m_SortingLayer
       value: 1
       objectReference: {fileID: 0}
@@ -1161,7 +1177,7 @@ PrefabInstance:
     - target: {fileID: 8285557029750564453, guid: a0c277d45caed6142845d33b53e08289, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 72333f0693fd8484e9907b2b5f01915d, type: 2}
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0c277d45caed6142845d33b53e08289, type: 3}
 --- !u!4 &8247468535755905704 stripped
