@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
 
     void onTriggerEnterEvent(Collider2D col)
     {
-        if (_curJumps  > 0) { 
+        if (_isDashing && _curJumps  > 0) { 
             AudioManager.instance.PlaySound(Sound.Name.PlayerDashAvailable);
             PlayerDashAvailableIsUncalled = false;
         }
