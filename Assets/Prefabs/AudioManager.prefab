@@ -81,9 +81,9 @@ MonoBehaviour:
     pitch: 2.076
   - name: 6
     loop: 0
-    clip: {fileID: 8300000, guid: 1fd07cc569ea72a4a9d532eadd076aeb, type: 3}
-    volume: 0.1
-    pitch: 0.35
+    clip: {fileID: 8300000, guid: 480c69d418bc1f34fb4ddff49d86b70c, type: 3}
+    volume: 0.35
+    pitch: 0.4
   - name: 7
     loop: 0
     clip: {fileID: 8300000, guid: 1fd07cc569ea72a4a9d532eadd076aeb, type: 3}
