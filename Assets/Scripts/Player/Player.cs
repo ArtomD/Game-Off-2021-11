@@ -108,9 +108,11 @@ public class Player : MonoBehaviour
         if (_isDashing && _curJumps  > 0) { 
             AudioManager.instance.PlaySound(Sound.Name.PlayerDashAvailable);
             PlayerDashAvailableIsUncalled = false;
+            _curJumps = 0;
+
+            chargeIndicator.SetActive(true);
         }
-        _curJumps = 0;
-        chargeIndicator.SetActive(true);
+
     }
 
 
