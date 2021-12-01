@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     private Vector3 _velocity;
 
 
-    private int _curJumps = 0; 
+    private int _jumpsUsed = 0; 
     private bool _isDashing = false;
     private float _dashTimeRemaining = 0f;
     private Vector2 impulseForce = new Vector2(0, 0);
@@ -105,12 +105,14 @@ public class Player : MonoBehaviour
 
     void onTriggerEnterEvent(Collider2D col)
     {
-        if (_curJumps  > 0) { 
+        if (_isDashing && _jumpsUsed  > 0) { 
             AudioManager.instance.PlaySound(Sound.Name.PlayerDashAvailable);
             PlayerDashAvailableIsUncalled = false;
+            _jumpsUsed = 0;
+
+            chargeIndicator.SetActive(true);
         }
-        _curJumps = 0;
-        chargeIndicator.SetActive(true);
+
     }
 
 
@@ -144,7 +146,7 @@ public class Player : MonoBehaviour
 
         if (_controller.isGrounded)
         {
-            _curJumps = 0;
+            _jumpsUsed = 0;
             _isDashing = false;
             _velocity.y = 0;
             chargeIndicator.SetActive(true);
@@ -190,7 +192,7 @@ public class Player : MonoBehaviour
 
         // Apply velocity based on the current dash input
         bool tryingToDash = Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift);
-        bool allowedToDash = !_isDashing  &&  _curJumps < maxJumps;
+        bool allowedToDash = !_isDashing  &&  _jumpsUsed < maxJumps;
         
         if (tryingToDash && allowedToDash )
         {
@@ -204,7 +206,7 @@ public class Player : MonoBehaviour
             _isDashing = true;
             dashTrail.Play();
             _dashTimeRemaining = maxDashTime;
-            _curJumps = _curJumps + 1;
+            _jumpsUsed = _jumpsUsed + 1;
 
             _velocity.Set(horizontal, vertical, 0);
             _velocity = _velocity.normalized * (maxDashSpeed + inAirDamping);
@@ -301,7 +303,7 @@ public class Player : MonoBehaviour
         
 
 
-        if (_curJumps == maxJumps)
+        if (_jumpsUsed == maxJumps)
         {
             chargeIndicator.SetActive(false);
         }
