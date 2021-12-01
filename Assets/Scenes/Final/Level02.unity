@@ -7262,6 +7262,10 @@ PrefabInstance:
       propertyPath: m_text
       value: LEVEL 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4269243222986337985, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
+      propertyPath: m_text
+      value: You must fix 1 panel
+      objectReference: {fileID: 0}
     - target: {fileID: 6052663687187112829, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
