@@ -328,12 +328,16 @@ public class PanelArtom : MonoBehaviour
                 completed = false;
             }
         }
-        if (completed)
+        Invoke("playUnpoweredPanel", 0.05f);
+    }
+
+    public void playUnpoweredPanel()
+    {
+        Debug.Log("completed: " + completed + " " + "completedCollider.active: " + completedCollider.active);
+        if (completed && !completedCollider.active)
         {
             AudioManager.instance.UnPause(Sound.Name.PanelSetUnpowered);
-        }
-
-
+        }        
     }
 
     public bool isCompleted()

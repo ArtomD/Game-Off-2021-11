@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
     public event Action<bool> onPlayerDissolveBegin;
     public event Action<bool> onPlayerDissolveComplete;
 
+    private bool PlayerDashAvailableIsUncalled;
+
     void Awake()
     {
         
@@ -60,6 +62,7 @@ public class Player : MonoBehaviour
         _disolver.onMaterialized += _disolver_onMaterialized;
 
         dashTrail.Stop();
+        PlayerDashAvailableIsUncalled = true;
     }
 
 
@@ -104,6 +107,7 @@ public class Player : MonoBehaviour
     {
         if (_curJumps  > 0) { 
             AudioManager.instance.PlaySound(Sound.Name.PlayerDashAvailable);
+            PlayerDashAvailableIsUncalled = false;
         }
         _curJumps = 0;
         chargeIndicator.SetActive(true);
@@ -145,6 +149,11 @@ public class Player : MonoBehaviour
             _velocity.y = 0;
             chargeIndicator.SetActive(true);
             dashTrail.Stop();
+            if (PlayerDashAvailableIsUncalled)
+            {
+                AudioManager.instance.PlaySound(Sound.Name.PlayerDashAvailable);
+                PlayerDashAvailableIsUncalled = false;
+            }
         }
         
         // TODO: Move to animation state machine
@@ -200,7 +209,7 @@ public class Player : MonoBehaviour
             _velocity.Set(horizontal, vertical, 0);
             _velocity = _velocity.normalized * (maxDashSpeed + inAirDamping);
             _animator.Play(Animator.StringToHash("Jump"));
-            
+            PlayerDashAvailableIsUncalled = true;
         }
 
         // Change state out of dashing after a delay
