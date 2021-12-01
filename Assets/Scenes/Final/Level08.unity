@@ -9423,7 +9423,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4269243222986337985, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_text
-      value: You must fix 2 panels
+      value: You must fix 3 panels
       objectReference: {fileID: 0}
     - target: {fileID: 6052663687187112829, guid: 8c449c9d89e4879418a4375b0a749aba, type: 3}
       propertyPath: m_AnchorMax.y
