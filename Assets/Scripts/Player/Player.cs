@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     private Vector2 impulseForce = new Vector2(0, 0);
 
     private Disolver _disolver;
-    private GameObject _trail;
+    private TrailEffect _trail;
 
     public GameObject chargeIndicator;
     public ParticleSystem dashTrail;
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
         _disolver = GetComponent<Disolver>();
         _controller = GetComponent<CharacterController2D>();
-        _trail = transform.Find("10 Trail").gameObject;
+        _trail = transform.Find("10 Trail").GetComponent<TrailEffect>();
 
         // listen to some events for illustration purposes
         _controller.onControllerCollidedEvent += onControllerCollider;
@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
     public void Start()
     {
         _disolver.In();
-        _trail.SetActive(false);
+        _trail.gameObject.SetActive(false);
         AudioManager.instance.PlaySound(Sound.Name.PlayerSpawned);
     }
 
@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
     {
         
         _allowMovement = true;
-        _trail.SetActive(true);
+        _trail.gameObject.SetActive(true);
       
     }
 
@@ -279,6 +279,12 @@ public class Player : MonoBehaviour
 
         if (_allowMovement) { 
             _controller.move(_velocity * Time.deltaTime);
+            // grab our current _velocity to use as a base for all calculations
+            _velocity = _controller.velocity;
+
+           
+            float roundedVelocity = Mathf.Round(_velocity.sqrMagnitude * 100) / 100;
+            _trail.SetIntensity(roundedVelocity);
         }
 
         // TODO: Make sure the sound manager completes a loop before playing again
@@ -286,15 +292,16 @@ public class Player : MonoBehaviour
         {
             
             AudioManager.instance.UnPause(Sound.Name.PlayerWalk);
+            
         } else
         {
             AudioManager.instance.Pause(Sound.Name.PlayerWalk);
         }
 
-        // grab our current _velocity to use as a base for all calculations
-        _velocity = _controller.velocity;         
         
-        if(_curJumps == maxJumps)
+
+
+        if (_curJumps == maxJumps)
         {
             chargeIndicator.SetActive(false);
         }
@@ -315,7 +322,7 @@ public class Player : MonoBehaviour
     public void Dissolve()
     {
         chargeIndicator.SetActive(false);
-        _trail.SetActive(false);
+        _trail.gameObject.SetActive(false);
         _allowMovement = false;
         _disolver.Out();
     }
