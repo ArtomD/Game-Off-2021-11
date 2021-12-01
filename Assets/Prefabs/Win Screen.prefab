@@ -68,7 +68,7 @@ MonoBehaviour:
   m_text: LEVEL COMPLETED
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 49c949e578d86f24986ba5fd6c3cc2f1, type: 2}
-  m_sharedMaterial: {fileID: -906199338739467758, guid: 49c949e578d86f24986ba5fd6c3cc2f1, type: 2}
+  m_sharedMaterial: {fileID: 788881026036554169, guid: 49c949e578d86f24986ba5fd6c3cc2f1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
